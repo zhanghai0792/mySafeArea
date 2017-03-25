@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pojo.house" table="house">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="areaID" />
+		<property name="address"/>
+		<property name="type"/>
+		<property name="owner"/>
+		<property name="pinYin"/>
+		<property name="ownerCardID" />
+		<property name="phone"  />
+		<property name="adderID" />
+		<property name="createDate"  type="date"/>
+		<property name="isDelete" />
+		<set name="residents" inverse="true">
+		<key column="houseID"/>
+		<one-to-many class="pojo.resident"/>
+		</set>
+		<property name="areaName"/>
+		<property name="adderName"/>
+	</class>
+</hibernate-mapping>

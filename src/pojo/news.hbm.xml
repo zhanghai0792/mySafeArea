@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pojo.news" table="news">
+	 <id name="id">
+	  <generator class="native"/>
+	 </id>
+	 <property name="title" column="title"/>
+	 <property name="content" column="content" type="text"/>
+	 <property name="releaseTime" column="releaseTime" type="timestamp"/>
+	<property name="releaseID" column="releaseID"/>
+	<property name="headlineMarker" column="headlineMarker"/>
+	<property name="isDelete" column="isDelete"/>
+	
+	<list name="photos" table="news_img">
+		<key column="news_id"/>
+		<index column="imge_index"/>
+		<element column="img_url" type="string"/>
+	</list>
+	<property name="releaseName"/>
+	</class>
+</hibernate-mapping>

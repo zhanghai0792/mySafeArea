@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="CarServlet/add" method="post">
+<input type="text" name="method" value="3">
+<textarea rows="3" cols="20" name="params">
+ {
+    "user": {
+        "id": 1,
+        "phone": "18323234567",
+        "name": "杨干警",
+        "password": "000000",
+        "type": 2,
+        "areaID": 1,
+        "isDelete": false,
+        "header": ""
+    },
+    "car": {
+        "plateNum": "赣G3221",
+        "brand": "奔驰",
+        "color": "红色",
+        "carNum": "1232131",
+        "owner": "张三",
+        "pinYin": "",
+        "cardID": "123123112121234",
+        "phone": "13241322314",
+        "areaID": 1,
+        "adderID": 1,
+        "createDate": "2017-03-12",
+        "isDelete": false,
+        "areaName": "",
+        "adderName": ""
+    }
+}
+</textarea>
+<input type="submit">
+</form>
+
+<!-- <script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#testJson").click(function(){
+			var url = "AreaServlet?method=4";
+			var args = {user:{
+				id:1,
+				phone:'18323234567',
+				name:'杨干警',
+				password:'000000',
+				type:2,
+				areaID:1,
+				isDelete:false
+				},placeStation:'七里湖派出所'
+				};
+			/* $.post(url, args, function(data){
+				
+			},"json");  */
+			
+			$.ajax({  
+	            type: "POST",  
+	            url: url,  
+	            contentType: "application/json", //必须有  
+	            dataType: "json", //表示返回值类型，不必须  
+	            data: JSON.stringify(args),  //相当于 //data: "{'str1':'foovalue', 'str2':'barvalue'}",  
+	            success: function (jsonResult) {  
+	                alert(jsonResult);  
+	            }  
+	        });  
+	      
+			
+			/* $.ajax({
+
+                type : 'post',
+
+                url : url,
+
+                //设置contentType类型为json
+
+                contentType : 'application/json;charset=utf-8',
+
+                //json数据
+
+                data : args,
+
+                //请求成功后的回调函数
+
+                success : function(data) {
+
+                         alert(data);
+
+                }
+
+      }); */
+			
+			return false;
+		});
+	})
+</script> -->
+
+<!-- <input type="button" id="testJson" value="testJson"/> -->
+
+<br>
+<a href="/mySafeArea/HouseServlet/getBasic">查看房屋信息</a>
+</body>
+</html>

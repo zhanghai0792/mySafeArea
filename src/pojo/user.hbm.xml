@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="pojo.user" table="user" where="!isDelete">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="phone" column="phone" />
+		<property name="name" column="name" />
+		<property name="password" column="password" />
+		<property name="type" column="type" />
+		<property name="areaID" column="areaID" />
+		<property name="isDelete" column="isDelete" />
+		<!-- <one-to-one name="header" class="pojo.photo" property-ref="objId"/>	 -->			
+	   <property name="header" type="string"/>
+	   <property name="areaName"/>
+	</class>
+
+</hibernate-mapping>
