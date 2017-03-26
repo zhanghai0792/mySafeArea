@@ -38,7 +38,7 @@ public class interactionMapper extends basicDaoImpl<interaction,interactionQuery
 
 
     public List<interaction> getInteractionsAndIsAgree(List<interaction> pojos,user u)throws Exception{
-    	String hql="select new pojo.interaction(interaction,agree) from pojo.interaction interaction left join interaction.agrees agree with interaction in(:pojos) and agree.agreeID=:userId";
+    	String hql="select new pojo.interaction(interaction,agree) from pojo.interaction interaction left join interaction.agrees agree with interaction in(:pojos) and agree.agreeID=:userId order by interaction.releaseTime desc";
     	Query query=getSession().createQuery(hql);
     	query.setParameterList("pojos",pojos);
     	query.setInteger("userId",u.getId());

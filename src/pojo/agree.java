@@ -2,11 +2,14 @@ package pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 //互动点赞
 public class agree implements pojoModel{
 private Integer id;
 private Integer interactionID;//
 private Integer agreeID;//点赞的用户
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 private Date agreeTime;//点赞的时间
 private Boolean isDelete;//是否删除
 //private interaction interaction;

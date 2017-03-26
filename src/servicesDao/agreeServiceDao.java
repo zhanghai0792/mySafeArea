@@ -41,7 +41,7 @@ public class agreeServiceDao extends serviceDaoTemplate<agree, agreeMapper, agre
 	public void setInteractionMapper(interactionMapper interactionMapper) {
 		this.interactionMapper = interactionMapper;
 	}
-	public Map<Integer,Long> currentIsAgreeInteraction(List<Integer> interactionIds,Integer userID)throws Exception{
+	/*public Map<Integer,Long> currentIsAgreeInteraction(List<Integer> interactionIds,Integer userID)throws Exception{
 		return dao.currentIsAgreeInteraction(interactionIds, userID);
-	}  
+	} */ 
 }

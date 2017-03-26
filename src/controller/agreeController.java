@@ -22,4 +22,7 @@ public class agreeController extends controllerTemplate<agree, agreeServiceDao, 
         	 throw new Exception("没有点赞权限，请注册登录");
          }
 	}
+	protected jsonResult androidUpdateTemplate(agreeQueryParams im) throws Exception {
+		return new jsonResult(serviceDao.delete(im.getObj()),"删除");
+	}
 }
