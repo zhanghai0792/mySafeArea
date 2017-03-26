@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.query.userQueryParams;
 import json.jsonResult;
@@ -42,4 +43,5 @@ public class userController extends controllerTemplate<user, userServiceDao, use
 			return "index";
 		}
   }
+  
 }

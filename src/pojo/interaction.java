@@ -32,7 +32,15 @@ private String releaseName;
 private boolean isAgree;//用户取出时是否对该互动点赞,true表示点赞，false表示没有点赞
 private int replyNum;//回复数
 private int commentNum;//评论数
+private String header;//发布者头像
 
+
+public String getHeader() {
+	return header;
+}
+public void setHeader(String header) {
+	this.header = header;
+}
 public Integer getReleaseID() {
 	return releaseID;
 }

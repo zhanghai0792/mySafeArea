@@ -102,7 +102,7 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 			if (p != null && p.getId() != null) {
 				deleteBeforDeal(p);
 				size = serviceDao.delete(p);
-				deleteBeforDeal(p);
+				deleteAfterDeal(p);
 				if (size > 0)
 					return createMessageJsonResult(p, "删除");
 			}
@@ -113,6 +113,31 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		}
 	}
 
+	public void deleteBeforDeal(List<T> POJOS)throws Exception{
+		
+	}
+public void deleteAfterDeal(List<T> POJOS)throws Exception{
+		
+	}
+	@RequestMapping("/deletes")
+	@ResponseBody
+	public jsonResult deletes(@RequestBody List<T> pojos) throws Exception {
+		try {
+			int size = -1;
+			if (ListUtil.isNotEmpty(pojos)) {
+				deleteBeforDeal(pojos);
+				size = serviceDao.deletes(pojos);
+				deleteAfterDeal(pojos);
+				if (size > 0)
+					return createMessageJsonResult(pojos, "删除");
+			}
+			return new jsonResult(false, "删除失败");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw e;
+		}
+	}
+	
 	// 是否添加拼音，如果要添加就要覆盖该方法
 	protected void addPY(T p) {
 	};
@@ -124,7 +149,7 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		return insert(p, 0);
 	}
 
-	// 默认的更新方式是有值更新，没有值不更新
+	
 	@RequestMapping("/update")
 	@ResponseBody
 	public jsonResult update(T p) throws Exception {
@@ -132,6 +157,25 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		return update(p, 1);
 	}
 
+	@RequestMapping("/updates")
+	@ResponseBody
+	public jsonResult updates(List<T> pojos) throws Exception {
+		 if(ListUtil.isNotEmpty(pojos)){
+		  for(T t:pojos){
+			 addPY(t);
+			 updateBeforDeal(t);
+			 }
+		  serviceDao.updates(pojos);
+		  for(T t:pojos){
+				 updateAfterDeal(t);
+				 }
+		  return new jsonResult(pojos);
+		}else{
+			return new jsonResult(false,"没有更新的数据");
+		}
+	}
+	
+	
 	protected jsonResult updateAll(T p) throws Exception {
 		addPY(p);
 		return update(p, 0);

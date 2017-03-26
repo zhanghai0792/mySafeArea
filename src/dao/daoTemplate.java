@@ -30,5 +30,6 @@ public interface daoTemplate <T extends pojoModel,Query extends queryParamsModel
     List<T> getBasic(Query map)throws Exception;
     List<T> getDetail(Query map)throws Exception;
     long count(Query map)throws Exception;
-    
+     int deleteObjectsByIds(List<Integer> ids) throws Exception;
+     int updates(List<T> pojos)throws Exception;
 }

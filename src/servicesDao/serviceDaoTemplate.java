@@ -60,6 +60,12 @@ public abstract class serviceDaoTemplate<T extends pojoModel,Dao extends daoTemp
     public int updateAll(T record)throws Exception{
     	return dao.updateByPrimaryKeySelective(record);
     }
+    
+    
+    public int updates(List<T> pojos)throws Exception{
+    	return dao.updates(pojos);
+    }
+    
     public long count(Query query) throws Exception{
     	return dao.count(query);
     }
@@ -93,14 +99,14 @@ public abstract class serviceDaoTemplate<T extends pojoModel,Dao extends daoTemp
     	return new jsonResult(true, "查询详细信息成功", total, query.getPageSize(), datas);
     }
     
-/*   // 详细的分页查询,直接查询，不通过basic查询方式
-    public jsonResult getPagesResultDetailNoBasic(Query query)throws Exception{
-    	long total=count(query);
-    	List datas=getDetailNoByBasic(query);
-    	return new jsonResult(true, "查询详细信息成功", total, query.getPageSize(), datas);
-    }*/
-    
-    
+   public int deletes(List<T> pojos)throws Exception{
+	   return dao.deletesObjects(pojos);
+   }
+   
+   public int deletesByIds(List<Integer> pojos)throws Exception{
+	   return dao.deleteObjectsByIds(pojos);
+   }
+   
 	public Dao getDao() {
 		return dao;
 	}

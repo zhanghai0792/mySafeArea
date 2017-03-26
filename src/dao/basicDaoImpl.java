@@ -84,6 +84,16 @@ public abstract class basicDaoImpl<T extends pojoModel, Query extends queryParam
 		}
 	}
 
+public int deleteObjectsByIds(List<Integer> ids) throws Exception {
+		if (ListUtil.isNotEmpty(ids)) {
+			String hql = "update " + claz.getName() + " "+claz.getSimpleName()+" set "+claz.getSimpleName()+".isDelete=true where " + claz.getSimpleName() + ".id in (:ids)";
+			org.hibernate.Query query = getSession().createQuery(hql);
+			query.setParameterList("ids", ids);
+			return query.executeUpdate();
+		} else {
+			throw new Exception("删除对象" + claz.getName() + "集合为空");
+		}
+	}
 	
 	private int insert(T record) throws Exception {
 		getSession().save(record);
@@ -118,12 +128,25 @@ public abstract class basicDaoImpl<T extends pojoModel, Query extends queryParam
 	protected void updateAfterDeal(T record)throws Exception{
 			
 		}
+	protected void updateBeforeDeal(T record)throws Exception{
+		
+	}
 	public int updateByPrimaryKeySelective(T record) throws Exception {
+		updateBeforeDeal(record);
 		int size=updateByPrimaryKey(record);
 		updateAfterDeal(record);
 		return size;
 	}
 
+	
+	public int updates(List<T> pojos)throws Exception{
+		int size=0;
+		for(T t:pojos){
+			size=size+updateByPrimaryKeySelective(t);
+		}
+		return size;
+	}
+	
 	
 	private int updateByPrimaryKey(T record) throws Exception {
 		getSession().update(record);
