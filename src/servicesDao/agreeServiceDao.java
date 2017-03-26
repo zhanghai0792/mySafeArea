@@ -11,6 +11,7 @@ import dao.interactionMapper;
 import dao.query.agreeQueryParams;
 import dao.query.interactionQueryParams;
 import pojo.agree;
+import pojo.interaction;
 @Service
 public class agreeServiceDao extends serviceDaoTemplate<agree, agreeMapper, agreeQueryParams>{
     @Autowired
@@ -21,6 +22,8 @@ public class agreeServiceDao extends serviceDaoTemplate<agree, agreeMapper, agre
 		//把关注的点赞数+1
 		
 		interactionMapper.updateAgreeNum(record.getInteractionID(),1);
+		interaction inter=interactionMapper.load(record.getInteractionID());
+		//record.setInteraction(inter);
 		return super.save(record);
 	}
 

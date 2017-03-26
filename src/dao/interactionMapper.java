@@ -13,6 +13,7 @@ import com.mchange.v2.resourcepool.ResourcePoolListener;
 import dao.query.interactionQueryParams;
 import pojo.interaction;
 import pojo.reply;
+import pojo.user;
 import util.ListUtil;
 @Repository
 public class interactionMapper extends basicDaoImpl<interaction,interactionQueryParams>{
@@ -36,7 +37,13 @@ public class interactionMapper extends basicDaoImpl<interaction,interactionQuery
 
 
 
-    
+    public List<interaction> getInteractionsAndIsAgree(List<interaction> pojos,user u)throws Exception{
+    	String hql="select new pojo.interaction(interaction,agree) from pojo.interaction interaction left join interaction.agrees agree with interaction in(:pojos) and agree.agreeID=:userId";
+    	Query query=getSession().createQuery(hql);
+    	query.setParameterList("pojos",pojos);
+    	query.setInteger("userId",u.getId());
+    	return query.list();
+    }
     
 	public List<interaction> getBasic_noReply(interactionQueryParams map) throws Exception {	
 		List<interaction> is=super.getBasic(map);
@@ -66,4 +73,7 @@ public class interactionMapper extends basicDaoImpl<interaction,interactionQuery
     	return (Long)query.uniqueResult();
     	
     }
+	
+	
+	
 }

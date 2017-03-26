@@ -28,7 +28,9 @@ private Set<reply> replies=new HashSet<reply>(0);
 
 private Integer releaseID;
 private String releaseName;
-//private Set<agree> agrees=new HashSet<agree>(0);
+@JsonIgnore
+private Set<agree> agrees=new HashSet<agree>(0);
+
 private boolean isAgree;//用户取出时是否对该互动点赞,true表示点赞，false表示没有点赞
 private int replyNum;//回复数
 private int commentNum;//评论数
@@ -109,25 +111,8 @@ public boolean getIsAgree() {
 public void setIsAgree(boolean isAgree) {
 	this.isAgree = isAgree;
 }
-public interaction() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-public interaction(interaction interaction, String releaseName) {
-	super();
-	if(interaction!=null){
-	this.id = interaction.id;
-	this.title = interaction.title;
-	this.content = interaction.content;
-	this.photos = interaction.photos;
-	this.releaseTime = interaction.releaseTime;
-	this.agreeNum = interaction.agreeNum;
-	this.isDelete = interaction.isDelete;
-	this.replies = interaction.replies;
-	this.releaseID = interaction.releaseID;
-	this.releaseName = releaseName;
-	this.isAgree = interaction.isAgree;}
-}
+
+
 public int getReplyNum() {
 	return replyNum;
 }
@@ -141,7 +126,11 @@ public void setCommentNum(int commentNum) {
 	this.commentNum = commentNum;
 }
 
-public interaction(interaction interaction) {
+public interaction() {
+	super();
+}
+
+public interaction(interaction interaction,agree agree) {
 	super();
 	if(interaction!=null){
 	this.id = interaction.id;
@@ -151,16 +140,28 @@ public interaction(interaction interaction) {
 	this.releaseTime = interaction.releaseTime;
 	this.agreeNum = interaction.agreeNum;
 	this.isDelete = interaction.isDelete;
-	//this.replies = interaction.replies;
+	this.replies = interaction.replies;
 	this.releaseID = interaction.releaseID;
-	this.releaseName = releaseName;
-	this.isAgree = interaction.isAgree;
+	this.releaseName = interaction.releaseName;
+	this.header=interaction.header;
 	this.commentNum=interaction.commentNum;
 	this.replyNum=interaction.replyNum;
+	 if(agree!=null&&agree.getId()!=null){
+	    this.isAgree = true;}else{
+	    	this.isAgree=false;
+	    }
 	}
+	
 }
+
 public Set<reply> getReplies() {
 	return replies;
+}
+public Set<agree> getAgrees() {
+	return agrees;
+}
+public void setAgrees(Set<agree> agrees) {
+	this.agrees = agrees;
 }
 
 

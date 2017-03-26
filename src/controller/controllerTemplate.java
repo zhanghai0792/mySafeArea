@@ -119,6 +119,7 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 public void deleteAfterDeal(List<T> POJOS)throws Exception{
 		
 	}
+	
 	@RequestMapping("/deletes")
 	@ResponseBody
 	public jsonResult deletes(@RequestBody List<T> pojos) throws Exception {
@@ -331,11 +332,11 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 
 	protected jsonResult androidInsertTemplate(InputMode im) throws Exception {
 		androidInsertTemplateBefor(im);
-		;
+		
 		return this.save(im.getObj());
 	}
 
-	protected void androidInsertTemplateBefor(InputMode im) {
+	protected void androidInsertTemplateBefor(InputMode im) throws Exception{
 
 	}
 

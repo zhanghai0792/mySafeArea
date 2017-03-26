@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.ejb.criteria.expression.function.CurrentTimestampFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import controller.userLogin.currentUser;
 import dao.agreeMapper;
 import dao.interactionMapper;
 import dao.replyMapper;
@@ -14,6 +16,7 @@ import dao.query.interactionQueryParams;
 
 import pojo.area;
 import pojo.interaction;
+import util.ListUtil;
 @Service
 public class interactionServiceDao extends serviceDaoTemplate<interaction, interactionMapper,interactionQueryParams>{
     @Autowired
@@ -71,13 +74,30 @@ public class interactionServiceDao extends serviceDaoTemplate<interaction, inter
 	
 	public List<interaction> getBasic(interactionQueryParams map) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.getBasic_noReply(map);
+		List<interaction> ins=dao.getBasic_noReply(map);
+		
+		if(ListUtil.isNotEmpty(ins)){
+			//System.err.println("基本数据"+ins.size());
+			ins= dao.getInteractionsAndIsAgree(ins, currentUser.getCurrentUser());
+			//System.err.println("查询点赞人后的"+ins.size());
+			return ins;
+		}else{
+			return ins;
+		}
 	}
 
 	
 	public List<interaction> getDetail(interactionQueryParams map) throws Exception {
 		// TODO Auto-generated method stub
-		return super.getDetail(map);
+		List<interaction> ins= super.getDetail(map);
+		if(ListUtil.isNotEmpty(ins)){
+			//System.err.println("基本数据"+ins.size());
+			ins= dao.getInteractionsAndIsAgree(ins, currentUser.getCurrentUser());
+			//System.err.println("查询点赞人后的"+ins.size());
+			return ins;
+		}else{
+			return ins;
+		}
 	}
 
 	

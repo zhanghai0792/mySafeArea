@@ -17,12 +17,9 @@ public class agreeController extends controllerTemplate<agree, agreeServiceDao, 
 		
 		return serviceDao.getPagesResultBasic(im);
 	}
-/*//要覆盖父类的添加，删除的功能
-	jsonResult androidInsertTemplate(agreeQueryParams im) throws Exception{
-		
+	protected void androidInsertTemplateBefor(agreeQueryParams im) throws Exception{
+         if(im==null||im.getUser()==null||im.getUser().getType()==null||im.getUser().getId()==0||im.getUser().getType()<=0||im.getUser().getType()>=3){
+        	 throw new Exception("没有点赞权限，请注册登录");
+         }
 	}
-	
-	private jsonResult androidDeleteTemplate(agreeQueryParams im) throws Exception{
-		
-	}*/
 }

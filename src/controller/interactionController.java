@@ -27,6 +27,12 @@ public class interactionController
 		
 	}
 	
+	public jsonResult getPagesDetail(interactionQueryParams im) throws Exception {
+		//查看指定interactionId的详情，要有当前用户是否点赞
+		return serviceDao.getPagesResultDetail(im);
+	}
+	
+	
 	protected void androidInsertTemplateBefor(interactionQueryParams im){
 		 //  im.getInteraction().setReleaseID(im.getUser().getId());
 		   im.getInteraction().setReleaseName(im.getUser().getName());

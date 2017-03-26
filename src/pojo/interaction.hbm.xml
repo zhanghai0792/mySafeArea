@@ -24,11 +24,11 @@
 			<one-to-many class="pojo.reply"/>
 			</set>
 	
-		<!-- <set name="agrees" cascade="save-update">
+		<set name="agrees" inverse="true">
 			<key column="interactionID"/>
 			<one-to-many class="pojo.agree"/>
 			</set>
-	 -->
+	 
   		<property name="releaseName"/>
    <property name="commentNum" formula="(select count(myreply_a.id) from reply myreply_a where myreply_a.interactionID=id and  myreply_a.type!=2 and !myreply_a.isDelete)"/>
 <property name="replyNum" formula="(select count(myreply_b.id) from reply myreply_b where myreply_b.interactionID=id and  myreply_b.type=2 and !myreply_b.isDelete)"/>

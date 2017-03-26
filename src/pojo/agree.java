@@ -9,6 +9,7 @@ private Integer interactionID;//
 private Integer agreeID;//点赞的用户
 private Date agreeTime;//点赞的时间
 private Boolean isDelete;//是否删除
+//private interaction interaction;
 public Integer getId() {
 	return id;
 }
@@ -39,5 +40,6 @@ public Boolean getIsDelete() {
 public void setIsDelete(Boolean isDelete) {
 	this.isDelete = isDelete;
 }
+
 
 }

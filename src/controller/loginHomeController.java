@@ -83,7 +83,7 @@ public class loginHomeController {
 		interQuery.setPage(1);
 		interQuery.setPageSize(2);
 		List<interaction> interactions=interactionServiceDao.getBasic(interQuery);
-		List<Integer> ids=new ArrayList<Integer>(0);
+		/*List<Integer> ids=new ArrayList<Integer>(0);
 		if(ListUtil.isNotEmpty(interactions)){
 			for(interaction i:interactions)
 				ids.add(i.getId());
@@ -91,7 +91,7 @@ public class loginHomeController {
 		for(interaction i:interactions)
 			if(isagrees.get(i.getId())!=null)
 			i.setIsAgree(isagrees.get(i.getId())>0);
-	}
+	}*/
 		 datas.put("interactions", interactions);
 		result.put("datas", datas);
 		return result;

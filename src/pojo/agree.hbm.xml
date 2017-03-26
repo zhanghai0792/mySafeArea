@@ -8,6 +8,7 @@
 			<generator class="native"/>
 		</id>
 		<property name="interactionID" />
+		<!-- <many-to-one name="interaction" column="interactionID" class="pojo.interaction"/> -->
 		<property name="agreeID"/>
 		<property name="agreeTime" type="timestamp"/>
 		<property name="isDelete"/>
