@@ -55,4 +55,16 @@ public class agreeMapper extends basicDaoImpl<agree,agreeQueryParams> {
 	    }
 	    return maps;
 	}
+	
+	public Boolean currentIsAgreeInteraction(Integer interactionIds,Integer userID)throws Exception{
+		String hql="select agree.interactionID,count(agree.id) from pojo.agree agree where agree.interactionID =:interactionIds and agree.agreeID=:userID group by agree.interactionID";
+	    Query query=getSession().createQuery(hql);
+	    query.setInteger("interactionIds", interactionIds);
+	    query.setInteger("userID", userID);
+	    List<Object[]> result=query.list();
+	   if(result!=null&&result.size()>0)
+		   return (Long)result.get(0)[1]>0L;
+		   return false;
+		   
+	}
 }

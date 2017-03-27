@@ -77,9 +77,9 @@ public class interactionServiceDao extends serviceDaoTemplate<interaction, inter
 		List<interaction> ins=dao.getBasic_noReply(map);
 		
 		if(ListUtil.isNotEmpty(ins)){
-			//System.err.println("基本数据"+ins.size());
+			System.err.println("基本数据"+ins.size());
 			ins= dao.getInteractionsAndIsAgree(ins, currentUser.getCurrentUser());
-			//System.err.println("查询点赞人后的"+ins.size());
+			System.err.println("查询点赞人后的"+ins.size());
 			return ins;
 		}else{
 			return ins;
@@ -89,11 +89,11 @@ public class interactionServiceDao extends serviceDaoTemplate<interaction, inter
 	
 	public List<interaction> getDetail(interactionQueryParams map) throws Exception {
 		// TODO Auto-generated method stub
-		List<interaction> ins= super.getDetail(map);
+		List<interaction> ins= dao.getDetail(map);
 		if(ListUtil.isNotEmpty(ins)){
-			//System.err.println("基本数据"+ins.size());
+			System.err.println("基本数据"+ins.size());
 			ins= dao.getInteractionsAndIsAgree(ins, currentUser.getCurrentUser());
-			//System.err.println("查询点赞人后的"+ins.size());
+			System.err.println("查询点赞人后的"+ins.size());
 			return ins;
 		}else{
 			return ins;

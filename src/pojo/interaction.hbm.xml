@@ -23,11 +23,11 @@
 			<key column="interactionID"/>
 			<one-to-many class="pojo.reply"/>
 			</set>
-	
+
 		<set name="agrees" inverse="true">
 			<key column="interactionID"/>
 			<one-to-many class="pojo.agree"/>
-			</set>
+			</set> 
 	 
   		<property name="releaseName"/>
    <property name="commentNum" formula="(select count(myreply_a.id) from reply myreply_a where myreply_a.interactionID=id and  myreply_a.type!=2 and !myreply_a.isDelete)"/>

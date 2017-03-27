@@ -7,8 +7,10 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import controller.userLogin.currentUser;
 import dao.query.interactionQueryParams;
 import pojo.interaction;
+import pojo.user;
 import servicesDao.interactionServiceDao;
 import servicesDao.replyServiceDao;
 import util.JsonUtil;
@@ -41,6 +43,12 @@ public static void add() throws Exception{
 		 ApplicationContext application=new ClassPathXmlApplicationContext("applicationContext.xml");
 			interactionServiceDao dao=(interactionServiceDao)application.getBean("interactionServiceDao");
 			interactionQueryParams query=new interactionQueryParams();
+		//query.setInteractionID(3);
+			query.setPage(1);
+			query.setPageSize(10);
+			user u=new user();
+			u.setId(1);
+			currentUser.login(u);
 			List<interaction> is=dao.getBasic(query);
 		
 			System.err.println(JsonUtil.getJsonString(is));

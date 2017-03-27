@@ -6,6 +6,7 @@ public class interactionQueryParams extends queryParamsModel<interaction>{
 
 	private interaction interaction;
 	private Integer interactionID;
+	String hql="select distinct interaction from pojo.interaction interaction left join fetch interaction.photos left join fetch interaction.replies";
 	public interaction getObj() {
 		// TODO Auto-generated method stub
 		return interaction;
@@ -32,9 +33,14 @@ public class interactionQueryParams extends queryParamsModel<interaction>{
 		return " where (:interactionID IS NULL or :interactionID=interaction.id)";
 	}
 	
-	public String getDetailQueryHQL() {
-		String hql="select distinct interaction from pojo.interaction interaction left join fetch interaction.photos left join fetch interaction.replies";
+	public String getDetailQueryHQL() {	
 		return hql;
+	}
+	
+	public void setDetailQueryHQL(String hql) {
+		/*String hql="select distinct interaction from pojo.interaction interaction left join fetch interaction.photos left join fetch interaction.replies";
+		return hql;*/
+		this.hql=hql;
 	}
 	
 	public boolean getDetailsInBasic() {
