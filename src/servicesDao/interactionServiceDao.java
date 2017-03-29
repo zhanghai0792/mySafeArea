@@ -74,8 +74,7 @@ public class interactionServiceDao extends serviceDaoTemplate<interaction, inter
 	
 	public List<interaction> getBasic(interactionQueryParams map) throws Exception {
 		// TODO Auto-generated method stub
-		List<interaction> ins=dao.getBasic_noReply(map);
-		
+		List<interaction> ins=dao.getBasic_noReply(map);	
 		if(ListUtil.isNotEmpty(ins)){
 			System.err.println("基本数据"+ins.size());
 			ins= dao.getInteractionsAndIsAgree(ins, currentUser.getCurrentUser());

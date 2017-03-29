@@ -22,8 +22,12 @@ public class agreeMapper extends basicDaoImpl<agree,agreeQueryParams> {
 	}
 	
 	public int deleteObject(agree t) throws Exception {
-		getSession().delete(t);
-		return 1;
+		//getSession().delete(t);
+		String hql="delete from pojo.agree agree where agree.interactionID=:interactionID and agree.agreeID=:agreeID";
+		Query query=getSession().createQuery(hql);
+		query.setInteger("interactionID", t.getInteractionID());
+		query.setInteger("agreeID", t.getAgreeID());	
+		return query.executeUpdate();
 	}
 	
 	public int deletesById(Integer id) throws Exception {

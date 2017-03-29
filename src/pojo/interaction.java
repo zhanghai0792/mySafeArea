@@ -130,7 +130,7 @@ public interaction() {
 	super();
 }
 
-public interaction(interaction interaction,agree agree) {
+public interaction(interaction interaction,long agrees) {
 	super();
 	if(interaction!=null){
 	this.id = interaction.id;
@@ -146,10 +146,16 @@ public interaction(interaction interaction,agree agree) {
 	this.header=interaction.header;
 	this.commentNum=interaction.commentNum;
 	this.replyNum=interaction.replyNum;
-	 if(agree!=null&&agree.getId()!=null){
-	    this.isAgree = true;}else{
-	    	this.isAgree=false;
+	/* if(agree!=null&&agree.getId()!=null){
+	    this.isAgree = true;
 	    }
+	 else{
+	    	this.isAgree=false;
+	    }*/
+	if(agrees>0)
+		this.isAgree=true;
+	else
+		this.isAgree=false;
 	}
 	
 }

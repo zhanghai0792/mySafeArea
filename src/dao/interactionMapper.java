@@ -70,17 +70,20 @@ public class interactionMapper extends basicDaoImpl<interaction,interactionQuery
 	}*/
 
     public List<interaction> getInteractionsAndIsAgree(List<interaction> pojos,user u)throws Exception{
-    	String hql="select distinct new pojo.interaction(interaction,agree) from pojo.interaction interaction left join interaction.agrees agree with agree.agreeID=:userId where interaction in(:pojos) order by interaction.releaseTime desc";
+    String hql="select distinct new pojo.interaction(interaction,count(agree)) from pojo.interaction interaction left join interaction.agrees agree with agree.agreeID=:userId where interaction in(:pojos) group by interaction order by interaction.releaseTime desc";
+    //	String hql="select distinct  interaction,agree.id  from pojo.interaction interaction left join interaction.agrees agree with agree.agreeID=:userId where interaction in(:pojos) order by interaction.releaseTime desc";
+    	
     	Query query=getSession().createQuery(hql);
     	query.setParameterList("pojos",pojos);
     	query.setInteger("userId",u.getId());
-    	return query.list();
+
+        return query.list();
     	/*if(ListUtil.isNotEmpty(pojos))
     	for(interaction i:pojos){
     		i.setIsAgree(agreeMapper.currentIsAgreeInteraction(i.getId(),u.getId()));
     	}
     	return pojos;*/
-    	
+    	//return null;
     }
     
     
