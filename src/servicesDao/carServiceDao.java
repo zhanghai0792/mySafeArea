@@ -1,5 +1,6 @@
 package servicesDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import dao.carMapper;
 import dao.query.carQueryParams;
+import pojo.area;
 import pojo.car;
+import util.ListUtil;
+import util.StringUtil;
 
 @Service
 public class carServiceDao extends serviceDaoTemplate<car, carMapper,carQueryParams>{
@@ -61,6 +65,26 @@ public class carServiceDao extends serviceDaoTemplate<car, carMapper,carQueryPar
 		// TODO Auto-generated method stub
 		return super.getDetail(map);
 	}
-
+	public List<String> getDeletePhotos(car a)throws Exception{
+		car aTemp=dao.load(a.getId());
+		String oldPhoto=aTemp.getPhoto();
+		if(StringUtil.isEmpty(oldPhoto))
+			return null;
+		if(oldPhoto.equals(a.getPhoto())){
+			return null;
+		}
+		List<String> aa=new ArrayList<String>(0);
+		aa.add(oldPhoto);
+		return aa;
+	}
+	
+	public List<String> getPhotos(car a)throws Exception{
+		car aTemp=dao.load(a.getId());
+		if(StringUtil.isEmpty(aTemp.getPhoto()))
+			return null;
+		List<String> oldPhotos=new ArrayList<String>(0);
+		oldPhotos.add(aTemp.getPhone());
+		return oldPhotos;
+	}
 
 }

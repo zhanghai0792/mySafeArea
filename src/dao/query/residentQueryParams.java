@@ -1,5 +1,6 @@
 package dao.query;
 
+import controller.userLogin.currentUser;
 import pojo.resident;
 
 public class residentQueryParams extends queryParamsModel<resident>{
@@ -7,6 +8,7 @@ public class residentQueryParams extends queryParamsModel<resident>{
 	private resident resident;
 	private Integer houseID;// 房屋ID
 	private Integer adderID;// 采集人ID
+	private Integer areaID;// 采集人ID
 	public resident getObj() {
 		// TODO Auto-generated method stub
 		return resident;
@@ -24,8 +26,9 @@ public class residentQueryParams extends queryParamsModel<resident>{
 	}
 	
 	public String getBasicQueryCondition() {
-		// TODO Auto-generated method stub
-		return  " where (:houseID IS NULL or resident.houseID=:houseID) and (:areaID IS NULL or resident.areaID=:areaID)";
+		if(policeID==null)
+		       policeID=currentUser.getCurrentUser().getPoliceID();
+		return  " where (:houseID IS NULL or resident.houseID=:houseID) and (:areaID IS NULL or resident.areaID=:areaID) and (:policeID = :fjid or :policeID=resident.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {
@@ -49,5 +52,12 @@ public class residentQueryParams extends queryParamsModel<resident>{
 	public void setAdderID(Integer adderID) {
 		this.adderID = adderID;
 	}
+	public Integer getAreaID() {
+		return areaID;
+	}
+	public void setAreaID(Integer areaID) {
+		this.areaID = areaID;
+	}
+	
 
 }

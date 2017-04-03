@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,15 @@ public class residentMapper extends basicDaoImpl<resident, residentQueryParams>{
     	 Query query=getSession().createQuery(hql);
     	 query.setInteger("houseID", house.getId());
     	  query.executeUpdate();
+    	 
+     }
+     
+     public  List<String> getPhotos(house house)throws Exception{
+    	// String hql="update pojo.resident resident set houseID=NULL where resident.houseID=:houseID";
+    	 String hql="select resident.header from pojo.resident resident where resident.houseID=:houseID";
+    	 Query query=getSession().createQuery(hql);
+    	 query.setInteger("houseID", house.getId());
+    	return query.list();
     	 
      }
      

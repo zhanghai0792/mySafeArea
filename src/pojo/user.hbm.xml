@@ -5,6 +5,7 @@
 <hibernate-mapping>
 
 	<class name="pojo.user" table="user" where="!isDelete">
+	 <cache usage="read-write" />  
 		<id name="id">
 			<generator class="native" />
 		</id>
@@ -17,6 +18,8 @@
 		<!-- <one-to-one name="header" class="pojo.photo" property-ref="objId"/>	 -->			
 	   <property name="header" type="string"/>
 	   <property name="areaName"/>
+	   <property name="policeID"/>
+<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
 	</class>
 
 </hibernate-mapping>

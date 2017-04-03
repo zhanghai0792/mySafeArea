@@ -37,6 +37,25 @@ public class interactionServiceDao extends serviceDaoTemplate<interaction, inter
 		return count;
 	}
 
+	public List<String> getDeletePhotos(interaction a)throws Exception{
+		interaction aTemp=dao.load(a.getId());
+		List<String> oldPhotos=aTemp.getPhotos();
+		if(ListUtil.isEmpty(oldPhotos))
+			return null;
+		
+		if(ListUtil.isNotEmpty(a.getPhotos())){
+			oldPhotos.removeAll(a.getPhotos());
+		}
+	
+		return oldPhotos;
+	}
+	
+	public List<String> getPhotos(interaction a)throws Exception{
+		interaction aTemp=dao.load(a.getId());
+		List<String> oldPhotos=aTemp.getPhotos();
+		return oldPhotos;
+	}
+	
 	
 	public int delete(interaction record) throws Exception {
 		/*photoQueryParams photoQuery=new photoQueryParams();

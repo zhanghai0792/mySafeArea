@@ -54,6 +54,22 @@ public class areaServiceDao extends serviceDaoTemplate<area, areaMapper,areaQuer
 		return count;
 	}
 
+	public List<String> getDeletePhotos(area a)throws Exception{
+		area aTemp=dao.load(a.getId());
+		List<String> oldPhotos=aTemp.getPhotos();
+		if(ListUtil.isEmpty(oldPhotos))
+			return null;
+		
+		if(ListUtil.isNotEmpty(a.getPhotos())){
+			oldPhotos.removeAll(a.getPhotos());
+		}
 	
-
+		return oldPhotos;
+	}
+	
+	public List<String> getPhotos(area a)throws Exception{
+		area aTemp=dao.load(a.getId());
+		List<String> oldPhotos=aTemp.getPhotos();
+		return oldPhotos;
+	}
 }

@@ -27,6 +27,31 @@ public class house implements pojoModel{
 	public String adderName;//采集人姓名
 	public Set<resident> residents=new HashSet<resident>(0);
 	
+	private Integer policeID;
+	private String policeName;
+	
+	public String photo;
+
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	
+	public Integer getPoliceID() {
+		return policeID;
+	}
+	public String getPoliceName() {
+		return policeName;
+	}
+	public void setPoliceID(Integer policeID) {
+		this.policeID = policeID;
+	}
+	public void setPoliceName(String policeName) {
+		this.policeName = policeName;
+	}
 	public Integer getId() {
 		return id;
 	}

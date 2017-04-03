@@ -2,20 +2,14 @@ package dao.query;
 
 import java.util.List;
 
+import controller.userLogin.currentUser;
 import pojo.area;
 
 public class areaQueryParams extends queryParamsModel<area>{
- private String placeStation;
+// private Integer policeID;
  private Integer areaID;
  private area area;
-public String getPlaceStation() {
-	return placeStation;
-}
-
-public void setPlaceStation(String placeStation) {
-	this.placeStation = placeStation;
-}
-
+ 
 
 public area getObj() {
 	return area;
@@ -37,12 +31,15 @@ public String getOrderBy() {
 
 
 public String getBasicQueryCondition() {
-	// TODO Auto-generated method stub
-	return " where (:areaID IS NULL or area.id=:areaID)";
+    if(policeID==null)
+       policeID=currentUser.getCurrentUser().getPoliceID();
+	return " where (:areaID IS NULL or area.id=:areaID) and (:policeID = :fjid or :policeID=area.policeID)";
 }
 
 
 public String getDetailQueryHQL() {
+	 if(policeID==null)
+	       policeID=currentUser.getCurrentUser().getPoliceID();
 	String hql="select distinct area from pojo.area area left join fetch area.photos";
 	return hql;
 }

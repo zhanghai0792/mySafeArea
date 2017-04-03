@@ -5,7 +5,21 @@ public class tempChange {
  private String areaName;
  private int sourceData=1;
  private int currentMonth;
-
+ private Integer policeID;
+	private String policeName;
+	
+	public Integer getPoliceID() {
+		return policeID;
+	}
+	public String getPoliceName() {
+		return policeName;
+	}
+	public void setPoliceID(Integer policeID) {
+		this.policeID = policeID;
+	}
+	public void setPoliceName(String policeName) {
+		this.policeName = policeName;
+	}
 public Integer getAreaID() {
 	return areaID;
 }

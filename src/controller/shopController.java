@@ -32,6 +32,6 @@ public class shopController extends controllerTemplate<shop, shopServiceDao, sho
 		
 		public Object updateBeforDeal(shop p) throws Exception {
 			p.setAdderName(currentUser.getCurrentUser().getName());
-			return null;
+			return  super.updateBeforDeal(p);
 		}
 }

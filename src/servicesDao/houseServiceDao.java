@@ -1,14 +1,20 @@
 package servicesDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mchange.v1.util.StringTokenizerUtils;
+
+import controller.userLogin.currentUser;
 import dao.houseMapper;
 import dao.residentMapper;
 import dao.query.houseQueryParams;
+import pojo.area;
+import pojo.car;
 import pojo.house;
 import pojo.resident;
 import util.ListUtil;
@@ -26,6 +32,8 @@ public class houseServiceDao extends serviceDaoTemplate<house, houseMapper,house
 			 for(resident re:record.getResidents()){
 				 re.setHouseID(record.getId());
 				 re.setPinYin(StringUtil.getPY(re.getName()));
+				 re.setAreaID(record.getAreaID());
+				 re.setPoliceID(currentUser.getCurrentUser().getPoliceID());
 				 residentMapper.insertSelective(re);
 			 }
 		 }
@@ -39,6 +47,8 @@ public class houseServiceDao extends serviceDaoTemplate<house, houseMapper,house
 		if(ListUtil.isNotEmpty(record.getResidents())){
 			 for(resident re:record.getResidents()){
 				 re.setHouseID(record.getId());
+				 re.setPoliceID(currentUser.getCurrentUser().getPoliceID());
+				 re.setAreaID(record.getAreaID());
 				 if(re.getId()==null){
 				re.setPinYin(StringUtil.getPY(re.getName()));
 				 residentMapper.insertSelective(re);
@@ -60,7 +70,37 @@ public class houseServiceDao extends serviceDaoTemplate<house, houseMapper,house
 		 }
 		return super.delete(record);
 	}
-
+	
+	public List<String> getDeletePhotos(house a)throws Exception{
+		house aTemp=dao.load(a.getId());
+		String oldPhoto=aTemp.getPhoto();
+		List<String> residents=residentMapper.getPhotos(a);
+		List<String> aa=new ArrayList<String>(0);
+		 if(StringUtil.isNotEmpty(oldPhoto))
+		  aa.add(oldPhoto);
+		 if(ListUtil.isNotEmpty(residents))
+			 aa.addAll(residents);
+		
+		if(StringUtil.isNotEmpty(a.getPhoto()))
+			aa.remove(a.getPhoto());
+		
+		if(ListUtil.isNotEmpty(a.residents)){
+			for(resident r:a.residents){
+				if(r.getId()!=null&&StringUtil.isNotEmpty(r.getHeader()))
+					aa.remove(r.getHeader());
+			}
+		}	
+		return aa;
+	}
+	
+	public List<String> getPhotos(house a)throws Exception{
+		house aTemp=dao.load(a.getId());
+		if(StringUtil.isEmpty(aTemp.getPhoto()))
+			return null;
+		List<String> oldPhotos=new ArrayList<String>(0);
+		oldPhotos.add(aTemp.getPhone());
+		return oldPhotos;
+	}
 	
 	public int updateAll(house record) throws Exception {
 		// TODO Auto-generated method stub

@@ -6,12 +6,26 @@ public class user implements pojoModel {
 	private String phone;// 手机号
 	private String name;// 姓名
 	private String password;// 密码
-	private Integer type;// 类型0:业主，1：物业，2：民警
+	private Integer type;// 类型0:业主，1：物业，2：民警,3:web管理员
 	private Integer areaID;// 小区ID
 	private Boolean isDelete;// 是否已经删除，失效
 	public String areaName;// 小区名
 	private String header;
-
+	private Integer policeID;
+	private String policeName;
+	
+	public Integer getPoliceID() {
+		return policeID;
+	}
+	public String getPoliceName() {
+		return policeName;
+	}
+	public void setPoliceID(Integer policeID) {
+		this.policeID = policeID;
+	}
+	public void setPoliceName(String policeName) {
+		this.policeName = policeName;
+	}
 	public Integer getId() {
 		return id;
 	}

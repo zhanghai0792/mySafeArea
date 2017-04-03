@@ -1,5 +1,6 @@
 package servicesDao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import dao.userMapper;
 
 import dao.query.userQueryParams;
 import pojo.area;
+import pojo.resident;
 import pojo.user;
 import util.ListUtil;
 import util.StringUtil;
@@ -59,6 +61,29 @@ public class userServiceDao extends serviceDaoTemplate<user, userMapper, userQue
 		return count;
 	}
 
+	
+	public List<String> getDeletePhotos(user a)throws Exception{
+		user aTemp=dao.load(a.getId());
+		String oldPhoto=aTemp.getHeader();
+		if(StringUtil.isEmpty(oldPhoto))
+			return null;
+		if(oldPhoto.equals(a.getHeader())){
+			return null;
+		}
+		List<String> aa=new ArrayList<String>(0);
+		aa.add(oldPhoto);
+		return aa;
+	}
+	
+	
+	public List<String> getPhotos(user a)throws Exception{
+		user aTemp=dao.load(a.getId());
+		if(StringUtil.isEmpty(aTemp.getHeader()))
+			return null;
+		List<String> oldPhotos=new ArrayList<String>(0);
+		oldPhotos.add(aTemp.getPhone());
+		return oldPhotos;
+	}
 	
 	public int updateAll(user record) throws Exception {
 

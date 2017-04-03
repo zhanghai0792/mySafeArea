@@ -7,3 +7,25 @@
 
 添加者的姓名在controller中处理
 小区的名称在daomapper中处理
+
+
+pojo.interaction
+pojo.agree      
+pojo.reply   
+policeStation   没有关联派出所
+
+
+resident 补充了areaId，和areaName及policateId及policateName信息
+
+
+用户注册时，那个派出所的id信息，移动端这边会放进去不？选择了小区把小区关联的派出所id关联到用户的派出所id上？！
+
+如果是分局的人，把该user的policeID信息设为null
+
+policeStationQueryParams中没有添加系统当前用户的信息作为查询绑定
+
+
+华东	Zone.zone0()
+华北	Zone.zone1()
+华南	Zone.zone2()
+北美	Zone.zoneNa0()

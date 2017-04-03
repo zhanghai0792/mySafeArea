@@ -84,7 +84,7 @@ public class loginAccess implements Filter {
 					//要做一个汉字的编码处理
 					String cookieZ=URLDecoder.decode(cookieValue,"UTF-8");;
 					String[] key=cookieZ.split("<>");
-					if(key==null||key.length!=3){
+					if(key==null||key.length!=4){
 						jsonResult json=new jsonResult(false, "登录cookie校验格式不正确，请重新登录");
 						responseWriteJosn(response,json);
 					}else{
@@ -92,6 +92,7 @@ public class loginAccess implements Filter {
 						user.setId(Integer.parseInt(key[0]));
 						user.setName(key[1]);
 						user.setType(Integer.parseInt(key[2]));
+						user.setPoliceID(Integer.parseInt(key[3]));
 						currentUser.login(user);
 						chain.doFilter(request, response);
 						currentUser.exit();

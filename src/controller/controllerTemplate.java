@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import controller.userLogin.currentUser;
 
 import dao.query.queryParamsModel;
+import factory.imagesFactory;
 import json.jsonResult;
 import pojo.area;
 import pojo.interaction;
@@ -86,12 +87,12 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 
 	// 用于保存前要做部分特殊操作，在子类中覆盖该方法就好了
 	private Object deleteBeforDeal(T p) throws Exception {
-		return null;
+		return serviceDao.getPhotos(p);
 	}
 
 	// 用于保存后要做部分特殊操作，在子类中覆盖该方法就好了
-	private Object deleteAfterDeal(T p) throws Exception {
-		return null;
+	private Object deleteAfterDeal(Object p) throws Exception {
+		return updateAfterDeal(p);
 	}
 
 	@RequestMapping("/delete")
@@ -100,9 +101,9 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		try {
 			int size = -1;
 			if (p != null && p.getId() != null) {
-				deleteBeforDeal(p);
+				Object photos=deleteBeforDeal(p);
 				size = serviceDao.delete(p);
-				deleteAfterDeal(p);
+				deleteAfterDeal(photos);
 				if (size > 0)
 					return createMessageJsonResult(p, "删除");
 			}
@@ -113,7 +114,7 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		}
 	}
 
-	public void deleteBeforDeal(List<T> POJOS)throws Exception{
+/*	public void deleteBeforDeal(List<T> POJOS)throws Exception{
 		
 	}
 public void deleteAfterDeal(List<T> POJOS)throws Exception{
@@ -137,7 +138,7 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 			logger.error(e.getMessage());
 			throw e;
 		}
-	}
+	}*/
 	
 	// 是否添加拼音，如果要添加就要覆盖该方法
 	protected void addPY(T p) {
@@ -246,7 +247,7 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 	 * "/" + p.getId()); } } return true; }
 	 */
 
-	protected String getRootPathAtType(Integer photoType) throws Exception {
+/*	protected String getRootPathAtType(Integer photoType) throws Exception {
 		String WebRootpath = AppConfig.RootPath;
 		String typeRelativePath = "";
 		switch (photoType) {
@@ -269,7 +270,7 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 			throw new Exception(photoType + " 图片类型不存在");
 		}
 		return WebRootpath + "/" + typeRelativePath;
-	}
+	}*/
 
 	protected jsonResult createMessageJsonResult(T pojo, String msg) {
 		jsonResult json;
@@ -310,6 +311,7 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 	protected jsonResult insert(T p, int type) throws Exception {
 		try {
 			int size = -1;
+			p.setPoliceID(currentUser.getCurrentUser().getPoliceID());
 			insertBeforDeal(p);
 			if (type == 0) {
 				size = serviceDao.save(p);
@@ -363,11 +365,21 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 
 	// 用于保存前要做部分特殊操作，在子类中覆盖该方法就好了
 	protected Object updateBeforDeal(T p) throws Exception {
-		return null;
+		return serviceDao.getDeletePhotos(p);
 	}
 
 	// 用于保存后要做部分特殊操作，在子类中覆盖该方法就好了
-	protected Object updateAfterDeal(T p) throws Exception {
+	protected Object updateAfterDeal(Object p) throws Exception {
+		 if(p!=null){
+			 if(p instanceof List){
+				List<String> photos=(List<String>) p;
+				 if(ListUtil.isNotEmpty(photos)){
+					//加入线程删除
+					 imagesFactory.deleteImages(photos);
+				 }
+				
+			 }
+		 }
 		return null;
 	}
 
@@ -375,13 +387,14 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 	protected jsonResult update(T p, int type) throws Exception {
 		try {
 			int size = -1;
-			updateBeforDeal(p);
+			p.setPoliceID(currentUser.getCurrentUser().getPoliceID());
+			Object o=updateBeforDeal(p);
 			if (type == 0) {
 				size = serviceDao.updateAll(p);
 			} else {
 				size = serviceDao.updateNoNull(p);
 			}
-			updateBeforDeal(p);
+			updateAfterDeal(o);//删除七牛的图片
 			if (size > 0)
 				return createMessageJsonResult(p, "更新");
 			return new jsonResult(false, "更新失败");

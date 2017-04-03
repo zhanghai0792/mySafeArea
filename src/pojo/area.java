@@ -10,10 +10,11 @@ public static final int photoType=1;
 private Integer id;//小区ID
 private String name;//小区名称
 private String introduction;//简介
-private String policeStation;//所属派出所
+
 private Boolean isDelete;//是否已经删除
 private List<String> photos=new ArrayList<String>(0);//新闻中包含的图片
-
+private Integer policeID;
+private String policeName;
 
 
 public Integer getId() {
@@ -34,12 +35,7 @@ public String getIntroduction() {
 public void setIntroduction(String introduction) {
 	this.introduction = introduction;
 }
-public String getPoliceStation() {
-	return policeStation;
-}
-public void setPoliceStation(String policeStation) {
-	this.policeStation = policeStation;
-}
+
 public Boolean getIsDelete() {
 	return isDelete;
 }
@@ -62,9 +58,22 @@ public area(area area) {
 	this.id = area.id;
 	this.name = area.name;
 	this.isDelete=area.isDelete;
-	this.policeStation=area.policeStation;
+	this.policeID=area.policeID;
+	this.policeName=area.policeName;
 	 this.photos=new ArrayList<String>(0);
 	}
+}
+public Integer getPoliceID() {
+	return policeID;
+}
+public String getPoliceName() {
+	return policeName;
+}
+public void setPoliceID(Integer policeID) {
+	this.policeID = policeID;
+}
+public void setPoliceName(String policeName) {
+	this.policeName = policeName;
 }
 
 

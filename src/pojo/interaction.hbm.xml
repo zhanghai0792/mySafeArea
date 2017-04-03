@@ -4,6 +4,7 @@
 		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="pojo.interaction" table="interaction">
+	 <cache usage="read-write" />  
 		<id name="id">
 			<generator class="native"/>
 		</id>

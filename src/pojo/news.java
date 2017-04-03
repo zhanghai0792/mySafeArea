@@ -21,7 +21,21 @@ public class news implements pojoModel{
 	private List<String> photos=new ArrayList<String>(0);//新闻中包含的图片
 	
 	public String releaseName;//发布人姓名
+	private Integer policeID;
+	private String policeName;
 	
+	public Integer getPoliceID() {
+		return policeID;
+	}
+	public String getPoliceName() {
+		return policeName;
+	}
+	public void setPoliceID(Integer policeID) {
+		this.policeID = policeID;
+	}
+	public void setPoliceName(String policeName) {
+		this.policeName = policeName;
+	}
 	
 	public Integer getId() {
 		return id;

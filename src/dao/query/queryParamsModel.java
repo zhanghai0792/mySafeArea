@@ -2,15 +2,19 @@ package dao.query;
 
 import java.util.List;
 
+import factory.applicationFactory;
 import pojo.pojoModel;
 import pojo.user;
 public abstract class queryParamsModel<T extends pojoModel>{
 protected user user;
 protected Integer page;
 protected Integer pageSize;
-private Integer recordIndex;
-private String orderBy;
-private List<T> pojos;
+protected Integer recordIndex;
+protected String orderBy;
+protected List<T> pojos;
+protected Integer policeID;
+protected Integer fjid=applicationFactory.fjId;//七里湖分局的id
+
 public abstract T getObj();
 public user getUser() {
 	return user;
@@ -60,4 +64,21 @@ public abstract String getBasicQueryCondition();
 public abstract String getDetailQueryHQL();
 //是否详细查询在基本查询的基础上
 public abstract boolean getDetailsInBasic();
+public Integer getPoliceID() {
+	return policeID;
+}
+
+public void setOrderBy(String orderBy) {
+	this.orderBy = orderBy;
+}
+public void setPoliceID(Integer policeID) {
+	this.policeID = policeID;
+}
+public Integer getFjid() {
+	return fjid;
+}
+public void setFjid(Integer fjid) {
+	this.fjid = fjid;
+}
+
 }

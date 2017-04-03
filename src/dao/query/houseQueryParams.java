@@ -2,6 +2,7 @@ package dao.query;
 
 import java.util.List;
 
+import controller.userLogin.currentUser;
 import pojo.car;
 import pojo.house;
 import util.StringUtil;
@@ -53,7 +54,9 @@ private	String condition_change;
 	}
 	
 	public String getBasicQueryCondition() {
-		return " where (:houseID IS NULL or house.id=:houseID) and (:areaID IS NULL or house.areaID=:areaID) and (:houseType IS NULL or house.type=:houseType) and ( (:condition_change IS NULL) or house.address like :condition_change or house.owner like :condition_change or house.pinYin like :condition_change or house.ownerCardID like :condition_change )";
+		if(policeID==null)
+		       policeID=currentUser.getCurrentUser().getPoliceID();
+		return " where (:houseID IS NULL or house.id=:houseID) and (:areaID IS NULL or house.areaID=:areaID) and (:policeID = :fjid or :policeID=house.policeID) and (:houseType IS NULL or house.type=:houseType) and ( (:condition_change IS NULL) or house.address like :condition_change or house.owner like :condition_change or house.pinYin like :condition_change or house.ownerCardID like :condition_change )";
 	}
 	
 	public String getDetailQueryHQL() {

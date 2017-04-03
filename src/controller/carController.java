@@ -35,7 +35,7 @@ public class carController extends controllerTemplate<car, carServiceDao, carQue
 	
 	public Object updateBeforDeal(car p) throws Exception {
 		p.setAdderName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.updateBeforDeal(p);
 	}
 	
 }

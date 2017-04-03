@@ -21,6 +21,29 @@ private Date createDate;//采集时间
 public String areaName;//小区名
 public String adderName;//采集人姓名
 public Boolean isDelete;
+private Integer policeID;
+private String policeName;
+public String photo;
+
+public String getPhoto() {
+	return photo;
+}
+public void setPhoto(String photo) {
+	this.photo = photo;
+}
+
+public Integer getPoliceID() {
+	return policeID;
+}
+public String getPoliceName() {
+	return policeName;
+}
+public void setPoliceID(Integer policeID) {
+	this.policeID = policeID;
+}
+public void setPoliceName(String policeName) {
+	this.policeName = policeName;
+}
 
 
 public Boolean getIsDelete() {

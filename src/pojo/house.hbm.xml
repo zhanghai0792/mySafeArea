@@ -4,6 +4,7 @@
 		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="pojo.house" table="house">
+	 <cache usage="read-write" />  
 		<id name="id">
 			<generator class="native"/>
 		</id>
@@ -23,5 +24,8 @@
 		</set>
 		<property name="areaName"/>
 		<property name="adderName"/>
+		<property name="policeID"/>
+<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
+<property name="photo"/>
 	</class>
 </hibernate-mapping>

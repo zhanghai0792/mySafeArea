@@ -11,6 +11,7 @@ import dao.query.newsQueryParams;
 
 import pojo.area;
 import pojo.news;
+import util.ListUtil;
 @Service
 public class newsServiceDao extends serviceDaoTemplate<news, newsMapper,newsQueryParams>{
 
@@ -34,6 +35,22 @@ public class newsServiceDao extends serviceDaoTemplate<news, newsMapper,newsQuer
 		return super.delete(record);
 	}
 
+	public List<String> getDeletePhotos(news a)throws Exception{
+		news aTemp=dao.load(a.getId());
+		List<String> oldPhotos=aTemp.getPhotos();
+		if(ListUtil.isEmpty(oldPhotos))
+			return null;
+		if(ListUtil.isNotEmpty(a.getPhotos())){
+			oldPhotos.removeAll(a.getPhotos());
+		}
+		return oldPhotos;
+	}	
+	
+	public List<String> getPhotos(news a)throws Exception{
+		news aTemp=dao.load(a.getId());
+		List<String> oldPhotos=aTemp.getPhotos();
+		return oldPhotos;
+	}
 	
 	public int updateAll(news record) throws Exception {
 		int count=super.updateAll(record);

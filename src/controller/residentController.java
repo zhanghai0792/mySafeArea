@@ -33,6 +33,6 @@ public class residentController extends controllerTemplate<resident,residentServ
 	
 	public Object updateBeforDeal(resident p) throws Exception {
 		p.setAdderName(currentUser.getCurrentUser().getName());
-		return null;
+		return  super.updateBeforDeal(p);
 	}
 }

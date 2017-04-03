@@ -1,5 +1,6 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.query.shopQueryParams;
+import pojo.car;
 import pojo.shop;
 import servicesDao.houseServiceDao;
 import servicesDao.shopServiceDao;
@@ -39,6 +41,9 @@ public class shopServiceDaoTest {
           
 		
   }
+  
+
+  
   
   public static void query() throws Exception{
 	  ApplicationContext application=new ClassPathXmlApplicationContext("applicationContext.xml");

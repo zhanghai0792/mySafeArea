@@ -1,4 +1,5 @@
 package dao.query;
+import controller.userLogin.currentUser;
 import pojo.user;
 public class userQueryParams extends queryParamsModel<user>{
 
@@ -16,13 +17,13 @@ public class userQueryParams extends queryParamsModel<user>{
 	}
 	
 	public String getOrderBy() {
-		// TODO Auto-generated method stub
-		return null;
+		return "user.id desc";
 	}
 	
 	public String getBasicQueryCondition() {
-		//return  " where user.phone=:phone and user.password=:password";
-	     return null;
+		if(policeID==null)
+			 policeID=currentUser.getCurrentUser().getPoliceID();
+		return "(:policeID = :fjid or :policeID=user.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {

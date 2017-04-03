@@ -20,6 +20,8 @@ import servicesDao.userServiceDao;
 public class userController extends controllerTemplate<user, userServiceDao, userQueryParams> {
 
 	
+	
+	
 	protected jsonResult query(userQueryParams im) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
@@ -29,8 +31,10 @@ public class userController extends controllerTemplate<user, userServiceDao, use
 	  userQueryParams query = new userQueryParams();
 		query.setUser(user);
 		user userQuery = serviceDao.login(query);
+		if(userQuery.getType()!=3)
+			throw new Exception("您没有web操作权限,请联系管理员");
 		if(userQuery!=null){
-		  String cookieValue=userQuery.getId()+"<>"+userQuery.getName()+"<>"+userQuery.getType();
+		  String cookieValue=userQuery.getId()+"<>"+userQuery.getName()+"<>"+userQuery.getType()+"<>"+userQuery.getPoliceID();
 		 String cookieZ= URLEncoder.encode(cookieValue,"UTF-8");
 		  Cookie cookie=new Cookie("mySafeAreaUser", cookieZ);
 		  cookie.setMaxAge(-1);//-1为内存保持

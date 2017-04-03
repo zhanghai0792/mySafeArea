@@ -13,10 +13,10 @@ import util.ListUtil;
 @Repository
 public class userMapper extends basicDaoImpl<user,userQueryParams>{
     //注册返回true，没有方法false
-	public boolean isRegister(String photo){
-	   String hql="select count(user.id) from pojo.user user where user.phone=:photo";
+	public boolean isRegister(String phone){
+	   String hql="select count(user.id) from pojo.user user where user.phone=:phone";
 	   Query query=getSession().createQuery(hql);
-	   query.setString("photo", photo);
+	   query.setString("phone", phone);
 	   return ((Long)query.uniqueResult())>0;
    }
 
@@ -33,6 +33,7 @@ public class userMapper extends basicDaoImpl<user,userQueryParams>{
 		}
 		
 	}
+	
 	
 	protected void insertAfterDeal(user record)throws Exception{
 		 if(record.getAreaID()!=null)

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import dao.query.areaQueryParams;
 import pojo.area;
 import pojo.house;
+import util.ListUtil;
 @Repository
 public class areaMapper extends basicDaoImpl<area,areaQueryParams>{
 
@@ -16,6 +17,7 @@ public class areaMapper extends basicDaoImpl<area,areaQueryParams>{
 		
 		return super.deletesObjects(map.getPojos());
 	}
+
 
 	
 	public area selectByPrimaryKey(Integer id) throws Exception {

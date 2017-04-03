@@ -3,6 +3,7 @@ package pojo;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //互动点赞
 public class agree implements pojoModel{
@@ -42,6 +43,16 @@ public Boolean getIsDelete() {
 }
 public void setIsDelete(Boolean isDelete) {
 	this.isDelete = isDelete;
+}
+@JsonIgnore
+public Integer getPoliceID() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setPoliceID(Integer policeID) {
+	
+	
 }
 
 

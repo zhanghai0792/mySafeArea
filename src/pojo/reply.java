@@ -3,6 +3,7 @@ package pojo;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public final class reply implements pojoModel{
@@ -111,6 +112,18 @@ public reply(reply reply, String replyerName,
 	this.type = reply.type;
 	this.isDelete = reply.isDelete;
 	}
+}
+
+@JsonIgnore
+public Integer getPoliceID() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+public void setPoliceID(Integer policeID) {
+	// TODO Auto-generated method stub
+	
 }
 
 

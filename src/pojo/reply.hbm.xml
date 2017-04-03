@@ -5,6 +5,7 @@
 <hibernate-mapping>
 
 	<class name="pojo.reply" table="reply" where="!isDelete">
+	 <cache usage="read-write" />  
 		<id name="id">
 			<generator class="native" />
 		</id>

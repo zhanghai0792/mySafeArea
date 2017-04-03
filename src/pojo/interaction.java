@@ -169,6 +169,16 @@ public Set<agree> getAgrees() {
 public void setAgrees(Set<agree> agrees) {
 	this.agrees = agrees;
 }
+@JsonIgnore
+public Integer getPoliceID() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setPoliceID(Integer policeID) {
+	// TODO Auto-generated method stub
+	
+}
 
 
 

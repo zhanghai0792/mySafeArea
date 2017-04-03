@@ -5,6 +5,7 @@
 <hibernate-mapping>
 
 	<class name="pojo.resident" table="resident">
+	 <cache usage="read-write" />  
 		<id name="id">
 			<generator class="native" />
 		</id>
@@ -21,6 +22,10 @@
 		<property name="header" type="string"/>											
 <property name="houseName" type="string"/>											
 <property name="adderName" type="string"/>	
+<property name="areaID"/>
+<property name="areaName" formula="(select area.name from area area where area.id=areaID)"/>
+<property name="policeID"/>
+<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
 	</class>
 
 </hibernate-mapping>

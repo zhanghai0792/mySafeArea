@@ -16,7 +16,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	    p:location="classpath:jdbc.properties"
 		p:fileEncoding="utf-8"/>
    
-   <context:component-scan base-package="dao,servicesDao"></context:component-scan>
+   <context:component-scan base-package="dao,servicesDao,factory"></context:component-scan>
 	<!-- 加载配置文件 -->
 	<!-- <context:property-placeholder location="classpath:db.properties" /> -->
 
@@ -73,10 +73,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<prop key="hibernate.dialect">hibernate.myDialect.myTextDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="cache.use_second_level_cache">true</prop><!-- 启用二级缓存 -->
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
 			</props>
 		</property>
 		<property name="mappingResources">
 			<list>
+			    <value>pojo/policeStation.hbm.xml</value>
 				<value>pojo/agree.hbm.xml</value>
 				<value>pojo/area.hbm.xml</value>
 				<value>pojo/car.hbm.xml</value>
@@ -87,7 +91,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<value>pojo/reply.hbm.xml</value>
 				<value>pojo/resident.hbm.xml</value>
 				<value>pojo/shop.hbm.xml</value>
-				<value>pojo/user.hbm.xml</value>
+				<value>pojo/user.hbm.xml</value>	
 			</list>
 		</property>
 	</bean>

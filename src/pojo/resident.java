@@ -23,7 +23,39 @@ public class resident implements pojoModel {
 
 	public String houseName;// 房屋名
 	public String adderName;// 采集人姓名
-
+    private Integer areaID;
+    private String areaName;
+    
+    private Integer policeID;
+	private String policeName;
+	
+	public Integer getPoliceID() {
+		return policeID;
+	}
+	public String getPoliceName() {
+		return policeName;
+	}
+	public void setPoliceID(Integer policeID) {
+		this.policeID = policeID;
+	}
+	public void setPoliceName(String policeName) {
+		this.policeName = policeName;
+	}
+	
+	
+	
+	public Integer getAreaID() {
+		return areaID;
+	}
+	public String getAreaName() {
+		return areaName;
+	}
+	public void setAreaID(Integer areaID) {
+		this.areaID = areaID;
+	}
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
 	public Integer getId() {
 		return id;
 	}

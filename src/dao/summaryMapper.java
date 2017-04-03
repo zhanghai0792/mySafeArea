@@ -9,7 +9,9 @@ import org.hibernate.SQLQuery;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
 
+import controller.userLogin.currentUser;
 import dao.query.summaryQueryParams;
+import factory.applicationFactory;
 import pojo.summaryPojo;
 import util.JsonUtil;
 import util.ListUtil;
@@ -23,7 +25,7 @@ public class summaryMapper extends basicDaoImpl<summaryPojo, summaryQueryParams>
     	if(ListUtil.isNotEmpty(areaIds)){
         	 hql=hql+" and area.id in(:ids) ";
          }
-         hql=hql+" and vo.isDelete!=true ) as newTable";
+         hql=hql+" and (vo.policeID="+currentUser.getCurrentUser().getPoliceID()+" or "+applicationFactory.fjId+"="+currentUser.getCurrentUser().getPoliceID()+") and vo.isDelete!=true ) as newTable";
          
          //String sumHql="select new pojo.summaryPojo(newTable.AareaID,newTable.AareaName,sum(newTable.pHistroy),sum(newTable.pMonth)) from "+hql+" group by newTable.AareaID";
          //String sumHql="select new pojo.summaryPojo(pojo.tempChange.areaID,pojo.tempChange.areaName,sum(pojo.tempChange.sourceData),sum(pojo.tempChange.currentMonth)) from "+hql+" group by pojo.tempChange.areaID";

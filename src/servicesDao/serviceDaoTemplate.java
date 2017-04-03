@@ -12,7 +12,7 @@ import dao.daoTemplate;
 import dao.query.queryParamsModel;
 import json.jsonResult;
 import pojo.area;
-
+import pojo.house;
 import pojo.pojoModel;
 import util.ListUtil;
 @Service
@@ -115,7 +115,12 @@ public abstract class serviceDaoTemplate<T extends pojoModel,Dao extends daoTemp
 		this.dao = dao;
 	}
 
-
+	public List<String> getDeletePhotos(T a)throws Exception{
+		return null;
+	}
+	public List<String> getPhotos(T a)throws Exception{
+		return null;
+	}
     
     
 }

@@ -2,6 +2,7 @@ package dao.query;
 
 import java.util.List;
 
+import controller.userLogin.currentUser;
 import pojo.area;
 import pojo.car;
 import util.StringUtil;
@@ -44,7 +45,9 @@ public class carQueryParams extends queryParamsModel<car>{
 	}
 	
 	public String getBasicQueryCondition() {
-		String hql=" where (:areaID IS NULL or car.areaID=:areaID) and (:condition_change IS NULL or car.plateNum like :condition_change or car.carNum like :condition_change or car.cardID like :condition_change or car.owner like :condition_change or car.pinYin like :condition_change)";
+		if(policeID==null)
+		       policeID=currentUser.getCurrentUser().getPoliceID();	
+		String hql=" where (:areaID IS NULL or car.areaID=:areaID) and (:policeID = :fjid or :policeID=car.policeID) and (:condition_change IS NULL or car.plateNum like :condition_change or car.carNum like :condition_change or car.cardID like :condition_change or car.owner like :condition_change or car.pinYin like :condition_change)";
 		return hql;
 	}
 	

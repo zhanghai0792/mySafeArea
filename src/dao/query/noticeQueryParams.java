@@ -1,5 +1,6 @@
 package dao.query;
 
+import controller.userLogin.currentUser;
 import pojo.notice;
 
 public class noticeQueryParams extends queryParamsModel<notice>{
@@ -25,7 +26,9 @@ public class noticeQueryParams extends queryParamsModel<notice>{
 			setPage(1);
 			setPageSize(3);
 		   }
-		return null;
+		if(policeID==null)
+		       policeID=currentUser.getCurrentUser().getPoliceID();
+		return "(:policeID = :fjid or :policeID=notice.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {

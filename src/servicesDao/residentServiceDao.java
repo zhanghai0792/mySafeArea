@@ -1,5 +1,6 @@
 package servicesDao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,9 @@ import dao.residentMapper;
 
 import dao.query.residentQueryParams;
 import pojo.area;
+import pojo.house;
 import pojo.resident;
+import util.StringUtil;
 @Service
 public class residentServiceDao extends serviceDaoTemplate<resident, residentMapper, residentQueryParams> {
 
@@ -42,6 +45,28 @@ public class residentServiceDao extends serviceDaoTemplate<resident, residentMap
 		return count;
 	}
 
+	public List<String> getDeletePhotos(resident a)throws Exception{
+		resident aTemp=dao.load(a.getId());
+		String oldPhoto=aTemp.getHeader();
+		if(StringUtil.isEmpty(oldPhoto))
+			return null;
+		if(oldPhoto.equals(a.getHeader())){
+			return null;
+		}
+		List<String> aa=new ArrayList<String>(0);
+		aa.add(oldPhoto);
+		return aa;
+	}
+	
+	public List<String> getPhotos(resident a)throws Exception{
+		resident aTemp=dao.load(a.getId());
+		if(StringUtil.isEmpty(aTemp.getHeader()))
+			return null;
+		List<String> oldPhotos=new ArrayList<String>(0);
+		oldPhotos.add(aTemp.getPhone());
+		return oldPhotos;
+	}
+	
 	
 	public int updateAll(resident record) throws Exception {
 

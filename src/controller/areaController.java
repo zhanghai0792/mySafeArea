@@ -126,10 +126,4 @@ public class areaController extends controllerTemplate<area, areaServiceDao, are
 	}
 		*/
 	
-	
-	@RequestMapping("/hello")
-	@ResponseBody
-	public String hello(){
-		return "test";
-	}
 }

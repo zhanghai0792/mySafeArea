@@ -5,7 +5,21 @@ public class summaryPojo implements pojoModel{
   private String areaName;//小区的名字
   private long historyTotal;//历史采集重量
   private long currentMonth;//当月采集量
-
+  private Integer policeID;
+	private String policeName;
+	
+	public Integer getPoliceID() {
+		return policeID;
+	}
+	public String getPoliceName() {
+		return policeName;
+	}
+	public void setPoliceID(Integer policeID) {
+		this.policeID = policeID;
+	}
+	public void setPoliceName(String policeName) {
+		this.policeName = policeName;
+	}
 public Integer getAreaID() {
 	return areaID;
 }

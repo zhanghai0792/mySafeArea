@@ -22,6 +22,10 @@ public class AppConfig {
     public static String userRootPath;
     public static String interactionRootPath;
     public static String newsRootPath;
+    //分局的名字
+    public static String fjName;
+
+    
 	public static String getRootPath() {
 		return RootPath;
 	}

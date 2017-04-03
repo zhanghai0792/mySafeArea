@@ -64,7 +64,7 @@ public class areaServiceDaoTest {
 		 photos.add("http://www.jju.edu.cn/02.jpg");
 		 photos.add("http://www.jju.edu.cn/03.jpg");
 	     record.setPhotos(photos);
-	     record.setPoliceStation("七里湖派出所");
+	     //record.setPoliceStation("七里湖派出所");
 	     record.setIsDelete(false);
 		 dao.save(record);
  }

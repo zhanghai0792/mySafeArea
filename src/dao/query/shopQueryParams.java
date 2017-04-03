@@ -1,5 +1,6 @@
 package dao.query;
 
+import controller.userLogin.currentUser;
 import pojo.shop;
 import util.StringUtil;
 
@@ -41,8 +42,9 @@ public class shopQueryParams extends queryParamsModel<shop>{
 	}
 	
 	public String getBasicQueryCondition() {
-		
-		return " where (:areaID IS NULL or shop.areaID=:areaID) and (:condition_change IS NULL or shop.name like :condition_change or shop.address like :condition_change or shop.owner like :condition_change or shop.businessScope like :condition_change or shop.pinYin like :condition_change)";
+		if(policeID==null)
+			 policeID=currentUser.getCurrentUser().getPoliceID();
+		return " where (:areaID IS NULL or shop.areaID=:areaID) and (:policeID = :fjid or :policeID=shop.policeID) and (:condition_change IS NULL or shop.name like :condition_change or shop.address like :condition_change or shop.owner like :condition_change or shop.businessScope like :condition_change or shop.pinYin like :condition_change)";
 	}
 	
 	public String getDetailQueryHQL() {

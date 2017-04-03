@@ -1,5 +1,6 @@
 package dao.query;
 
+import controller.userLogin.currentUser;
 import pojo.news;
 
 public class newsQueryParams extends queryParamsModel<news>{
@@ -27,8 +28,10 @@ public class newsQueryParams extends queryParamsModel<news>{
 		return " news.releaseTime desc";
 	}
 	
-	public String getBasicQueryCondition() {		
-		return " where (:newsId IS NULL or news.id=:newsId)";
+	public String getBasicQueryCondition() {
+		if(policeID==null)
+		       policeID=currentUser.getCurrentUser().getPoliceID();
+		return " where (:newsId IS NULL or news.id=:newsId) and (:policeID = :fjid or :policeID=news.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {
