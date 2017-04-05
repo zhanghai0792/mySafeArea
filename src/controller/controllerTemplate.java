@@ -411,7 +411,7 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 			return new jsonResult(false, "操作对象未传递");
 		}
 		InputMode data = (InputMode) myObjectMapper.readValue(params, modelInputClasz);
-		System.err.println(myObjectMapper.writeValueAsString(data));
+		//System.err.println(myObjectMapper.writeValueAsString(data));
 		jsonResult json = null;
 		if (data.getUser() == null) {
 			json = new jsonResult(false, "没有使用权限,请重新登录");

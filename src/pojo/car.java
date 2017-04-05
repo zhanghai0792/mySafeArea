@@ -29,7 +29,15 @@ private String policeName;
 public String areaName;//小区名称
 public String adderName;//采集人姓名
 public String photo;
+private String mark;//备注
 
+
+public String getMark() {
+	return mark;
+}
+public void setMark(String mark) {
+	this.mark = mark;
+}
 public String getPhoto() {
 	return photo;
 }

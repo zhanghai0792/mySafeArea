@@ -21,7 +21,10 @@
 		<property name="isDelete" column="isDelete" />
 		<property name="header" type="string"/>											
 <property name="houseName" type="string"/>											
-<property name="adderName" type="string"/>	
+<property name="adderName" type="string"/>
+<property name="pCategory" type="string"/>	
+<property name="work" type="string"/>
+<property name="mark" type="string"/>
 <property name="areaID"/>
 <property name="areaName" formula="(select area.name from area area where area.id=areaID)"/>
 <property name="policeID"/>

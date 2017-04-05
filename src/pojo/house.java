@@ -29,16 +29,18 @@ public class house implements pojoModel{
 	
 	private Integer policeID;
 	private String policeName;
-	
-	public String photo;
+	private String genre;//房屋类别
+	private String ownerWorks;//屋主工作单位
+	private String mark;//备注
 
-	public String getPhoto() {
-		return photo;
+
+	public String getMark() {
+		return mark;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setMark(String mark) {
+		this.mark = mark;
 	}
-	
+
 	
 	public Integer getPoliceID() {
 		return policeID;
@@ -141,6 +143,18 @@ public class house implements pojoModel{
 	public house() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public String getOwnerWorks() {
+		return ownerWorks;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public void setOwnerWorks(String ownerWorks) {
+		this.ownerWorks = ownerWorks;
 	}
 
 }

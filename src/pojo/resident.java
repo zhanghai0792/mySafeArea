@@ -20,7 +20,9 @@ public class resident implements pojoModel {
 	private Date createDate;// 采集时间
 	private Boolean isDelete;// 是否已经删除
 	private String header;// 头像
-
+   
+	
+	
 	public String houseName;// 房屋名
 	public String adderName;// 采集人姓名
     private Integer areaID;
@@ -29,6 +31,32 @@ public class resident implements pojoModel {
     private Integer policeID;
 	private String policeName;
 	
+	
+	private String mark;//备注
+     private String pCategory;//人口管理类别
+     private String work;//所属单位
+
+	public String getMark() {
+		return mark;
+	}
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
+	
+	
+	
+	public String getpCategory() {
+		return pCategory;
+	}
+	public String getWork() {
+		return work;
+	}
+	public void setpCategory(String pCategory) {
+		this.pCategory = pCategory;
+	}
+	public void setWork(String work) {
+		this.work = work;
+	}
 	public Integer getPoliceID() {
 		return policeID;
 	}

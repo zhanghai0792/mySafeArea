@@ -26,6 +26,8 @@
 		<property name="adderName"/>
 		<property name="policeID"/>
 <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
-<property name="photo"/>
+<property name="genre"/>
+<property name="ownerWorks"/>
+<property name="mark"/>
 	</class>
 </hibernate-mapping>

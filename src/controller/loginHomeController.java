@@ -57,7 +57,7 @@ public class loginHomeController {
 			map.put("msg", "操作对象未传递");
 		}
 		userQueryParams data = (userQueryParams) myObjectMapper.readValue(params, userQueryParams.class);
-		System.err.println(myObjectMapper.writeValueAsString(data));
+		//System.err.println(myObjectMapper.writeValueAsString(data));
 		jsonResult json = null;
 		if (data.getUser() == null) {
 			Map<String,Object> map=new HashMap<String,Object>(0);

@@ -25,6 +25,17 @@ private Integer policeID;
 private String policeName;
 public String photo;
 
+
+private String mark;//备注
+
+
+public String getMark() {
+	return mark;
+}
+public void setMark(String mark) {
+	this.mark = mark;
+}
+
 public String getPhoto() {
 	return photo;
 }
