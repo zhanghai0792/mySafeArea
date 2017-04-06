@@ -65,13 +65,15 @@ public class userServiceDao extends serviceDaoTemplate<user, userMapper, userQue
 	public List<String> getDeletePhotos(user a)throws Exception{
 		user aTemp=dao.load(a.getId());
 		String oldPhoto=aTemp.getHeader();
-		if(StringUtil.isEmpty(oldPhoto))
-			return null;
+		if(StringUtil.isEmpty(oldPhoto)){
+			 dao.evict(aTemp);
+			return null;}
 		if(oldPhoto.equals(a.getHeader())){
 			return null;
 		}
 		List<String> aa=new ArrayList<String>(0);
 		aa.add(oldPhoto);
+		 dao.evict(aTemp);
 		return aa;
 	}
 	
@@ -82,6 +84,7 @@ public class userServiceDao extends serviceDaoTemplate<user, userMapper, userQue
 			return null;
 		List<String> oldPhotos=new ArrayList<String>(0);
 		oldPhotos.add(aTemp.getPhone());
+		 dao.evict(aTemp);
 		return oldPhotos;
 	}
 	

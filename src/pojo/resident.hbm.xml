@@ -26,6 +26,8 @@
 <property name="work" type="string"/>
 <property name="mark" type="string"/>
 <property name="areaID"/>
+<property name="sex"/>
+<property name="birthay"/>
 <property name="areaName" formula="(select area.name from area area where area.id=areaID)"/>
 <property name="policeID"/>
 <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>

@@ -48,22 +48,26 @@ public class residentServiceDao extends serviceDaoTemplate<resident, residentMap
 	public List<String> getDeletePhotos(resident a)throws Exception{
 		resident aTemp=dao.load(a.getId());
 		String oldPhoto=aTemp.getHeader();
-		if(StringUtil.isEmpty(oldPhoto))
-			return null;
+		if(StringUtil.isEmpty(oldPhoto)){
+			 dao.evict(aTemp);
+			return null;}
 		if(oldPhoto.equals(a.getHeader())){
 			return null;
 		}
 		List<String> aa=new ArrayList<String>(0);
 		aa.add(oldPhoto);
+		 dao.evict(aTemp);
 		return aa;
 	}
 	
 	public List<String> getPhotos(resident a)throws Exception{
 		resident aTemp=dao.load(a.getId());
-		if(StringUtil.isEmpty(aTemp.getHeader()))
-			return null;
+		if(StringUtil.isEmpty(aTemp.getHeader())){
+			 dao.evict(aTemp);
+			return null;}
 		List<String> oldPhotos=new ArrayList<String>(0);
 		oldPhotos.add(aTemp.getPhone());
+		 dao.evict(aTemp);
 		return oldPhotos;
 	}
 	

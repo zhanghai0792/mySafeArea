@@ -21,6 +21,9 @@ public class resident implements pojoModel {
 	private Boolean isDelete;// 是否已经删除
 	private String header;// 头像
    
+	private String sex;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date birthay;
 	
 	
 	public String houseName;// 房屋名
@@ -36,6 +39,18 @@ public class resident implements pojoModel {
      private String pCategory;//人口管理类别
      private String work;//所属单位
 
+	public String getSex() {
+		return sex;
+	}
+	public Date getBirthay() {
+		return birthay;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public void setBirthay(Date birthay) {
+		this.birthay = birthay;
+	}
 	public String getMark() {
 		return mark;
 	}

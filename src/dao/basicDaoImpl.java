@@ -71,7 +71,9 @@ public abstract class basicDaoImpl<T extends pojoModel, Query extends queryParam
 
 		return deleteByPrimaryKey(id);
 	}
-
+public void evict(T t)throws Exception{
+	getSession().evict(t);
+}
 	
 	public int deletesObjects(List<T> objs) throws Exception {
 		if (ListUtil.isNotEmpty(objs)) {

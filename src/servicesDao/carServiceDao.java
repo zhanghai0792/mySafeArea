@@ -68,22 +68,28 @@ public class carServiceDao extends serviceDaoTemplate<car, carMapper,carQueryPar
 	public List<String> getDeletePhotos(car a)throws Exception{
 		car aTemp=dao.load(a.getId());
 		String oldPhoto=aTemp.getPhoto();
-		if(StringUtil.isEmpty(oldPhoto))
-			return null;
+		if(StringUtil.isEmpty(oldPhoto)){
+			 dao.evict(aTemp);
+			return null;}
 		if(oldPhoto.equals(a.getPhoto())){
+			 dao.evict(aTemp);
 			return null;
 		}
 		List<String> aa=new ArrayList<String>(0);
 		aa.add(oldPhoto);
+		 dao.evict(aTemp);
 		return aa;
 	}
 	
 	public List<String> getPhotos(car a)throws Exception{
 		car aTemp=dao.load(a.getId());
-		if(StringUtil.isEmpty(aTemp.getPhoto()))
+		if(StringUtil.isEmpty(aTemp.getPhoto())){
+			 dao.evict(aTemp);
 			return null;
+			}
 		List<String> oldPhotos=new ArrayList<String>(0);
 		oldPhotos.add(aTemp.getPhone());
+		 dao.evict(aTemp);
 		return oldPhotos;
 	}
 

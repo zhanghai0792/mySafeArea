@@ -38,17 +38,20 @@ public class newsServiceDao extends serviceDaoTemplate<news, newsMapper,newsQuer
 	public List<String> getDeletePhotos(news a)throws Exception{
 		news aTemp=dao.load(a.getId());
 		List<String> oldPhotos=aTemp.getPhotos();
-		if(ListUtil.isEmpty(oldPhotos))
-			return null;
+		if(ListUtil.isEmpty(oldPhotos)){
+			 dao.evict(aTemp);
+			return null;}
 		if(ListUtil.isNotEmpty(a.getPhotos())){
 			oldPhotos.removeAll(a.getPhotos());
 		}
+		 dao.evict(aTemp);
 		return oldPhotos;
 	}	
 	
 	public List<String> getPhotos(news a)throws Exception{
 		news aTemp=dao.load(a.getId());
 		List<String> oldPhotos=aTemp.getPhotos();
+		 dao.evict(aTemp);
 		return oldPhotos;
 	}
 	

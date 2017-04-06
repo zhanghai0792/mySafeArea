@@ -14,7 +14,7 @@
 		<property name="policeID"/>
 		<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
 		<property name="isDelete"/>
-			<list name="photos" table="area_img">
+	<list name="photos" table="area_img">
 		<key column="area_id"/>
 		<index column="imge_index"/>
 		<element column="img_url" type="string"/>

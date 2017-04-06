@@ -72,25 +72,27 @@ public class houseServiceDao extends serviceDaoTemplate<house, houseMapper,house
 	}
 	
 	public List<String> getDeletePhotos(house a)throws Exception{
-		house aTemp=dao.load(a.getId());
+		/*house aTemp=dao.load(a.getId());
 	////String oldPhoto=aTemp.getPhoto();
 		List<String> residents=residentMapper.getPhotos(a);
 		List<String> aa=new ArrayList<String>(0);
-		/* if(StringUtil.isNotEmpty(oldPhoto))
-		  aa.add(oldPhoto);*/
+		 if(StringUtil.isNotEmpty(oldPhoto))
+		  aa.add(oldPhoto);
 		 if(ListUtil.isNotEmpty(residents))
 			 aa.addAll(residents);
 		
-		/*if(StringUtil.isNotEmpty(a.getPhoto()))
-			aa.remove(a.getPhoto());*/
+		if(StringUtil.isNotEmpty(a.getPhoto()))
+			aa.remove(a.getPhoto());
 		
 		if(ListUtil.isNotEmpty(a.residents)){
 			for(resident r:a.residents){
 				if(r.getId()!=null&&StringUtil.isNotEmpty(r.getHeader()))
 					aa.remove(r.getHeader());
 			}
-		}	
-		return aa;
+		}
+		 dao.evict(aTemp);
+		return aa;*/
+		return null;
 	}
 	
 	public List<String> getPhotos(house a)throws Exception{
