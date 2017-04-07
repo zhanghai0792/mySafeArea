@@ -5,6 +5,8 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import factory.applicationFactory;
+
 public class resident implements pojoModel {
 	public static final int photoType = 0;
 	private Integer id;// 主键
@@ -76,6 +78,8 @@ public class resident implements pojoModel {
 		return policeID;
 	}
 	public String getPoliceName() {
+		if(policeID!=null)
+			return applicationFactory.polices.get(policeID);
 		return policeName;
 	}
 	public void setPoliceID(Integer policeID) {

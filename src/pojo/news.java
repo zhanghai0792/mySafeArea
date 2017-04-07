@@ -8,6 +8,8 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import factory.applicationFactory;
+
 public class news implements pojoModel{
 	public static final int photoType=3;
 	private Integer id;//主键
@@ -28,6 +30,8 @@ public class news implements pojoModel{
 		return policeID;
 	}
 	public String getPoliceName() {
+		if(policeID!=null)
+			return applicationFactory.polices.get(policeID);
 		return policeName;
 	}
 	public void setPoliceID(Integer policeID) {

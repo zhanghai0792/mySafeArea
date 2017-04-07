@@ -19,7 +19,7 @@
 	   <property name="header" type="string"/>
 	   <property name="areaName"/>
 	   <property name="policeID"/>
-<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
+<!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->
 	</class>
 
 </hibernate-mapping>

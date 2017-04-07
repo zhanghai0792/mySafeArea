@@ -21,5 +21,9 @@ public class policeStationMapper extends basicDaoImpl<policeStation, policeStati
 			throw new Exception("没有分局信息");
 		return ids.get(0);
 	}
-	
+	public List<policeStation> getPolices()throws Exception{
+		String hql="select policeStation from pojo.policeStation policeStation";
+		Query query=getSession().createQuery(hql);
+		return query.list();
+	}
 }

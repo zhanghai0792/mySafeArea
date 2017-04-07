@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import factory.applicationFactory;
+
 public class area implements pojoModel{
 public static final int photoType=1;
 private Integer id;//小区ID
@@ -61,12 +63,28 @@ public area(area area) {
 	this.policeID=area.policeID;
 	this.policeName=area.policeName;
 	 this.photos=new ArrayList<String>(0);
+	 this.photos.addAll(area.getPhotos());
 	}
 }
+public area(area area,String photo) {
+	super();
+	if(area!=null){
+	this.id = area.id;
+	this.name = area.name;
+	this.isDelete=area.isDelete;
+	this.policeID=area.policeID;
+	this.policeName=area.policeName;
+	 this.photos=new ArrayList<String>(0);
+	 this.photos.add(photo);
+	}
+}
+
 public Integer getPoliceID() {
 	return policeID;
 }
 public String getPoliceName() {
+	if(policeID!=null)
+		return applicationFactory.polices.get(policeID);
 	return policeName;
 }
 public void setPoliceID(Integer policeID) {

@@ -52,6 +52,7 @@ public class residentServiceDao extends serviceDaoTemplate<resident, residentMap
 			 dao.evict(aTemp);
 			return null;}
 		if(oldPhoto.equals(a.getHeader())){
+			 dao.evict(aTemp);
 			return null;
 		}
 		List<String> aa=new ArrayList<String>(0);

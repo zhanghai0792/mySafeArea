@@ -9,24 +9,31 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 
+import controller.userLogin.currentUser;
 import dao.query.areaQueryParams;
 import pojo.area;
+import pojo.user;
 import servicesDao.areaServiceDao;
 import servicesDao.interactionServiceDao;
+import util.AppConfig;
 import util.JsonUtil;
 
 public class areaServiceDaoTest {
 
 	public static void main(String[] args) throws Exception {
-
+		AppConfig.fjName="八里湖分局";
 	ApplicationContext application=new ClassPathXmlApplicationContext("applicationContext.xml");
 	areaServiceDao dao=(areaServiceDao)application.getBean("areaServiceDao");
 
 	areaQueryParams queryParams=new areaQueryParams();
-    queryParams.setPage(1);
+    /*queryParams.setPage(1);
     queryParams.setPageSize(4);
-    queryParams.setAreaID(1);;
-   List<area> list=dao.getDetail(queryParams);
+    queryParams.setAreaID(1);*/
+      user user=new pojo.user();
+      user.setAreaID(1);
+      user.setPoliceID(1);
+      currentUser.login(user);
+   List<area> list=dao.getBasic(queryParams);
 	System.out.println(JsonUtil.getJsonString(list));
 
   System.out.println("ok");

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import dao.areaMapper;
 
 import dao.query.areaQueryParams;
-
+import json.jsonResult;
 import pojo.area;
 import pojo.news;
 import pojo.pojoModel;
@@ -74,4 +74,5 @@ public class areaServiceDao extends serviceDaoTemplate<area, areaMapper,areaQuer
 		 dao.evict(aTemp);
 		return oldPhotos;
 	}
+
 }

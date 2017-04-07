@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import factory.applicationFactory;
 import util.StringUtil;
 
 
@@ -167,6 +168,8 @@ public Integer getPoliceID() {
 	return policeID;
 }
 public String getPoliceName() {
+	if(policeID!=null)
+		return applicationFactory.polices.get(policeID);
 	return policeName;
 }
 public void setPoliceID(Integer policeID) {

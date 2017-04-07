@@ -25,7 +25,7 @@
 		<property name="areaName"/>
 		<property name="adderName"/>
 		<property name="policeID"/>
-<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
+<!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->
 <property name="genre"/>
 <property name="ownerWorks"/>
 <property name="mark"/>

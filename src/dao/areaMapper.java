@@ -30,6 +30,25 @@ public class areaMapper extends basicDaoImpl<area,areaQueryParams>{
 		hqlSelectHead="select new pojo.area(area) from pojo.area area";
 	}
 
-	
+	/*public List<area> getBasic(areaQueryParams map) throws Exception {
 
+		//String hql = "select new pojo.area(area,photo) from pojo.area area left join area.photos photo where  area.photos[0]=photo and (:areaID IS NULL or area.id=:areaID) and (:policeID = :fjid or :policeID=area.policeID) and area.isDelete != true";
+		String hql = "select new pojo.area(area,photo) from pojo.area area left join area.photos photo where (photo= area.photos[0] or photo is null) and (:areaID IS NULL or area.id=:areaID) and (:policeID = :fjid or :policeID=area.policeID) and area.isDelete != true";
+		
+		if (map.getOrderBy() != null) {
+			hql = hql + " order by " + map.getOrderBy();
+		}
+		org.hibernate.Query query = getSession().createQuery(hql);
+		if (map.getPage() != null && map.getPage() > 0) {
+			query.setFirstResult((map.getPage() - 1) * map.getPageSize());
+			query.setMaxResults(map.getPageSize());
+			// query.setMaxResults(1);
+			// System.out.println("pageSize"+map.getPageSize());
+		}
+		if (map.getBasicQueryCondition() != null) {
+			query.setProperties(map);
+		}
+		return query.list();
+	}
+*/
 }

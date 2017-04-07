@@ -19,13 +19,12 @@ public void setName(String name) {
 }
 @JsonIgnore
 public Integer getPoliceID() {
-	// TODO Auto-generated method stub
-	return null;
+	
+	return id;
 }
 
 public void setPoliceID(Integer policeID) {
-	// TODO Auto-generated method stub
-	
+
 }
 
 

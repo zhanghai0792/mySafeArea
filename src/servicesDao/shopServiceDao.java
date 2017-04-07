@@ -19,6 +19,7 @@ public class shopServiceDao extends serviceDaoTemplate<shop,shopMapper,shopQuery
 			 dao.evict(aTemp);
 			return null;}
 		if(oldPhoto.equals(a.getPhoto())){
+			 dao.evict(aTemp);
 			return null;
 		}
 		List<String> aa=new ArrayList<String>(0);

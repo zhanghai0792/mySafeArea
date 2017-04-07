@@ -1,5 +1,7 @@
 package pojo;
 
+import factory.applicationFactory;
+
 public class user implements pojoModel {
 	public static final int photoType = 2;
 	private Integer id;// ID
@@ -17,7 +19,10 @@ public class user implements pojoModel {
 	public Integer getPoliceID() {
 		return policeID;
 	}
-	public String getPoliceName() {
+	public String getPoliceName() 
+	{
+		if(policeID!=null)
+			return applicationFactory.polices.get(policeID);
 		return policeName;
 	}
 	public void setPoliceID(Integer policeID) {

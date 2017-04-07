@@ -25,6 +25,6 @@
 		<property name="policeID"/>
 		<property name="photo"/>
 		<property name="mark"/>
-<property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/>
+<!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->
 	</class>
 </hibernate-mapping>

@@ -32,7 +32,7 @@ public class areaController extends controllerTemplate<area, areaServiceDao, are
 	
 	
 	protected jsonResult query(areaQueryParams im) throws Exception {
-		return getPagesDetail(im);
+		return getPagesBasic(im);
 	}
 	
 	/*@RequestMapping("/add")
