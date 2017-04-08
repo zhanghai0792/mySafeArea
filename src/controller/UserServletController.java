@@ -49,7 +49,7 @@ public class UserServletController extends controllerTemplate<user, userServiceD
 			return login(params,method);
 		}
 		userQueryParams data = (userQueryParams) myObjectMapper.readValue(params, userQueryParams.class);
-		System.err.println(myObjectMapper.writeValueAsString(data));
+		//System.err.println(myObjectMapper.writeValueAsString(data));
 		jsonResult json = null;
 		if (data.getUser() == null) {
 			json = new jsonResult(false, "没有使用权限,请重新登录");
