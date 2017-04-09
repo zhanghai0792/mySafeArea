@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import controller.userLogin.currentUser;
 import dao.daoTemplate;
 import dao.query.queryParamsModel;
+import factory.applicationFactory;
 import pojo.pojoModel;
+import util.AppConfig;
 import util.JsonUtil;
 import util.ListUtil;
+import util.StringUtil;
 
 //HibernateDaoSupport中提供的session是线程安全的session
 //一个线程始终使用一个session，一个session不会被多个线程共用
@@ -200,6 +204,10 @@ public int deleteObjectsByIds(List<Integer> ids) throws Exception {
 		return (Long) query.uniqueResult();
 	}
 
+	
+	
+	
+	
 	public List<T> getDetail(Query map) throws Exception {
 		String hql = map.getDetailQueryHQL();
 		org.hibernate.Query query = null;
@@ -213,7 +221,7 @@ public int deleteObjectsByIds(List<Integer> ids) throws Exception {
 					hql = hql + " order by" + map.getOrderBy();
 				query = getSession().createQuery(hql);
 				query.setParameterList("pojos", baiscs);
-				System.err.println("jiru");
+				//System.err.println("jiru");
 				return query.list();
 			}
 			return new ArrayList<T>(0);
@@ -221,5 +229,49 @@ public int deleteObjectsByIds(List<Integer> ids) throws Exception {
 			return getBasic(map);
 		}
 	}
+	
+	
+  public  List<T> getBasic(String condition,Integer page,Integer pageSize)throws Exception{
+    	String hql = hqlSelectHead+" where (:policeID = "+applicationFactory.fjId+" or :policeID="+claz.getSimpleName()+".policeID) and ("+ claz.getSimpleName() + ".isDelete != true) ";
+    	Integer policeID=currentUser.getCurrentUser().getPoliceID();
+    	 if(StringUtil.isNotEmpty(condition)){
+    		 hql=hql+" and "+condition;
+    	 }
+    	 org.hibernate.Query query = getSession().createQuery(hql);
+    	 if(page!=null&&page>0&&pageSize>0){
+    		 query.setFirstResult((page-1)*pageSize);
+    		 query.setMaxResults(pageSize);
+    	 }
+    	 query.setInteger("policeID", policeID);
+    	 return query.list();	 
+    }
+
+public List<T> getDetail(List<T> baiscs,Query map)throws Exception{
+	String hql = map.getDetailQueryHQL();
+	org.hibernate.Query query = null;
+	if (baiscs != null && baiscs.size() > 0) {
+		hql = hql + " where " + claz.getSimpleName() + " in (:pojos) ";
+		if (map.getOrderBy() != null)
+			hql = hql + " order by" + map.getOrderBy();
+		query = getSession().createQuery(hql);
+		query.setParameterList("pojos", baiscs);
+		//System.err.println("jiru");
+		return query.list();
+	}
+	return new ArrayList<T>(0);
+	
+    }
+public long count(String condition)throws Exception{
+	String hql = hqlCountHead+" where (:policeID = "+applicationFactory.fjId+" or :policeID="+claz.getSimpleName()+".policeID) and ("+ claz.getSimpleName() + ".isDelete != true) ";
+	 if(StringUtil.isNotEmpty(condition)){
+		 hql=hql+" and "+condition;
+	 }
+	 org.hibernate.Query query = getSession().createQuery(hql);
+	 Integer policeID=currentUser.getCurrentUser().getPoliceID();
+	 query.setInteger("policeID", policeID);
+	 return (Long) query.uniqueResult();
+}
+	
+	
 
 }

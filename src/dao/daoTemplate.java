@@ -29,6 +29,11 @@ public interface daoTemplate <T extends pojoModel,Query extends queryParamsModel
    //pageSize 每夜长度
     List<T> getBasic(Query map)throws Exception;
     List<T> getDetail(Query map)throws Exception;
+    
+    List<T> getBasic(String condition,Integer page,Integer pageSize)throws Exception;
+    List<T> getDetail(List<T> pojos,Query map)throws Exception;
+    long count(String condition)throws Exception;
+    
     long count(Query map)throws Exception;
      int deleteObjectsByIds(List<Integer> ids) throws Exception;
      int updates(List<T> pojos)throws Exception;

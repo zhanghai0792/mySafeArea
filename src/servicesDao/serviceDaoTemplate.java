@@ -82,6 +82,7 @@ public abstract class serviceDaoTemplate<T extends pojoModel,Dao extends daoTemp
     public List<T> getDetail(Query query)throws Exception{
     	return dao.getDetail(query);
     }
+    
   /*  public List<T> getDetail (Query query)throws Exception{
     	return dao.getDetail(query);
     }*/
@@ -94,9 +95,28 @@ public abstract class serviceDaoTemplate<T extends pojoModel,Dao extends daoTemp
     }
    // 详情是在basic查询的基础上再次查询主要用于1->N的分页查询
     public jsonResult getPagesResultDetail(Query query)throws Exception{
-    	long total=count(query);
+    	long total=dao.count(query);
     	List datas=getDetail(query);
     	return new jsonResult(true, "查询详细信息成功", total, query.getPageSize(), datas);
+    }
+    
+    
+    //基本的分页查询
+    public jsonResult getPagesResultBasic(String query,Integer page,Integer pageSize)throws Exception{
+    	long total=dao.count(query);
+    	List datas=dao.getBasic(query,page,pageSize);
+    	return new jsonResult(true, "查询基本信息成功", total, pageSize, datas);
+    }
+   // 详情是在basic查询的基础上再次查询主要用于1->N的分页查询
+    public jsonResult getPagesResultDetail(String query,Integer page,Integer pageSize,Query queryParams)throws Exception{
+    	long total=dao.count(query);
+    	List datas=getDetail(query,page,pageSize,queryParams);
+    	return new jsonResult(true, "查询详细信息成功", total, pageSize, datas);
+    }
+    
+    public List<T> getDetail(String query,Integer page,Integer pageSize,Query queryParams)throws Exception{
+    	 List<T> pojos=dao.getBasic(query, page, pageSize);
+        return dao.getDetail(pojos,queryParams);
     }
     
    public int deletes(List<T> pojos)throws Exception{

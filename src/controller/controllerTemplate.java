@@ -404,6 +404,13 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 		}
 	}
 
+	@RequestMapping("/get")
+	@ResponseBody
+	public jsonResult webGet(@RequestParam(name="condition",required=false,defaultValue="") String condition,@RequestParam(name="page",required=false,defaultValue="0") Integer page,@RequestParam(name="pageSize",required=false,defaultValue="0") Integer pageSize) throws Exception{
+		return serviceDao.getPagesResultBasic(condition, page, pageSize);
+	}
+	
+	
 	@RequestMapping("")
 	@ResponseBody
 	public jsonResult deal(@RequestParam("method") Integer method, @RequestParam("params") String params) throws Exception {
