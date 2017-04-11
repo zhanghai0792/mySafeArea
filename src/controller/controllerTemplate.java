@@ -58,8 +58,26 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 	@RequestMapping("/getBasic")
 	@ResponseBody
 	public jsonResult getBasic(InputMode map) throws Exception {
-		try {
-			List<T> datas = serviceDao.getBasic(map);
+		
+			//List<T> datas = serviceDao.getBasic(map);
+			String query=null;
+			Integer page=null;
+			Integer pageSize=null;
+			if(map!=null){
+				if(StringUtil.isNotEmpty(map.getCondition()))
+					query=map.getCondition();
+				if(map.getPage()!=null&&map.getPage()>0)
+					page=map.getPage();
+				if(map.getPageSize()!=null&&map.getPageSize()>0&&page!=null)
+					pageSize=map.getPageSize();
+			}
+			if(!(page!=null&&pageSize!=null)){
+				page=null;
+				pageSize=null;
+			}
+			
+			return serviceDao.getPagesResultBasic(query, page, pageSize);
+			/*List<T> datas = serviceDao.getBasic(map);
 			jsonResult json = new jsonResult("查询成功");
 			if (datas != null && datas.size() > 0)
 				json.add(datas);
@@ -67,7 +85,7 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			throw e;
-		}
+		}*/
 	}
 
 	@RequestMapping("/getDetail")

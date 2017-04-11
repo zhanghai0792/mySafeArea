@@ -14,6 +14,7 @@ import servicesDao.residentServiceDao;
 import util.StringUtil;
 
 @Controller
+@RequestMapping("/residentServlet")
 public class residentController extends controllerTemplate<resident,residentServiceDao,residentQueryParams>{
 
 	

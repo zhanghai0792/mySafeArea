@@ -14,7 +14,15 @@ protected String orderBy;
 protected List<T> pojos;
 protected Integer policeID;
 protected Integer fjid=applicationFactory.fjId;//七里湖分局的id
+protected String condition;
 
+
+public String getCondition() {
+	return condition;
+}
+public void setCondition(String condition) {
+	this.condition = condition;
+}
 public abstract T getObj();
 public user getUser() {
 	return user;

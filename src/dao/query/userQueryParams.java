@@ -23,7 +23,7 @@ public class userQueryParams extends queryParamsModel<user>{
 	public String getBasicQueryCondition() {
 		if(policeID==null)
 			 policeID=currentUser.getCurrentUser().getPoliceID();
-		return "(:policeID = :fjid or :policeID=user.policeID)";
+		return "where (:policeID = :fjid or :policeID=user.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {

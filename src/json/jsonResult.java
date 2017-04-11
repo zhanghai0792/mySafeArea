@@ -12,12 +12,15 @@ public class jsonResult {
 	
 	
 	
-	public jsonResult(boolean success, String msg, long total, int pageSize, List datas) {
+	public jsonResult(boolean success, String msg, long total, Integer pageSize, List datas) {
 		super();
 		this.success = success;
 		this.msg = msg;
 		this.total = total;
-		this.pageSize = pageSize;
+		 if(pageSize==null)
+		this.pageSize = 0;
+		 else
+			 this.pageSize=pageSize;
 		this.datas = datas;
 	}
     public jsonResult(Object pojo,String msg){
