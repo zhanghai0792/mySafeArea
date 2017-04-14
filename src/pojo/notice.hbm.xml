@@ -13,7 +13,7 @@
 		<property name="releaseID" column="releaseID"/>
 		<property name="headlineMarker" column="headlineMarker"/>
 		<property name="isDelete" column="isDelete"/>
-		<property name="releaseTime" column="releaseTime" type="timestamp"/>
+		<property name="releaseTime" column="releaseTime" type="date"/>
        <property name="releaseName"/>
        <property name="policeID"/>
 <!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->

@@ -13,7 +13,7 @@ private String content;//内容
 private Integer releaseID;//发布人ID
 private Boolean headlineMarker;
 private Boolean isDelete;
-@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+@JsonFormat(pattern="yyyy-MM-dd")
 private Date releaseTime;//发布时间
 
 public String releaseName;//发布人姓名

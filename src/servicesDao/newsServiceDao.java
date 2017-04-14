@@ -17,6 +17,7 @@ public class newsServiceDao extends serviceDaoTemplate<news, newsMapper,newsQuer
 
 	
 	public int save(news record) throws Exception {
+		record.setIsDelete(false);
 		int count=super.save(record);
 		//super.savePhoto(record.getPhotos(), record,record.photoType);
 		return count;

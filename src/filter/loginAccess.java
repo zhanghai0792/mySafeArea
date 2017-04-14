@@ -58,7 +58,8 @@ public class loginAccess implements Filter {
 			String acceUrl=request.getRequestURI();
 			String webAppPath=request.getContextPath();
 			//如果是第一次登陆(/index.htm,/user/Login,/img/,/js)放行，
-			if(webAppPath.equals(acceUrl)||(webAppPath+"/").equals(acceUrl)||(webAppPath+"/index.htm").equals(acceUrl)||acceUrl.startsWith(webAppPath+"/user/Login")||acceUrl.startsWith(webAppPath+"/img")||acceUrl.startsWith(webAppPath+"/js")||acceUrl.startsWith(webAppPath+"/css")){
+			if(webAppPath.equals(acceUrl)||(webAppPath+"/").equals(acceUrl)||(webAppPath+"/index.htm").equals(acceUrl)||acceUrl.startsWith(webAppPath+"/user/Login")||acceUrl.startsWith(webAppPath+"/img")||acceUrl.startsWith(webAppPath+"/js")
+					||acceUrl.startsWith(webAppPath+"/Jsps/login.jsp")||acceUrl.startsWith(webAppPath+"/easyUI")||acceUrl.startsWith(webAppPath+"/images")||acceUrl.startsWith(webAppPath+"/inc")||acceUrl.startsWith(webAppPath+"/json")){
 				chain.doFilter(request, response);
 			}else{
 				//否则cookie判断

@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import controller.userLogin.currentUser;
 import factory.applicationFactory;
+import util.StringUtil;
 
 public class house implements pojoModel{
 
@@ -160,5 +163,64 @@ public class house implements pojoModel{
 	public void setOwnerWorks(String ownerWorks) {
 		this.ownerWorks = ownerWorks;
 	}
-
+/*
+ 
+id`, 
+`areaID`, 
+`address`,
+ `type`, 
+`owner`, 
+`pinYin`,
+ `ownerCardID`,
+ `phone`, 
+`adderID`, 
+`createDate`, 
+`isDelete`,
+ `areaName`, 
+`adderName`, 
+`policeID`, 
+`photo`, 
+`genre`, 
+`ownerWorks`,
+ `mark`
+ 
+ * */
+	
+	public static String[] excelFormate=new String[]{"address","type","owner","ownerCardID","phone","genre","ownerWorks","areaName","mark","八里湖分局辖区居住房屋管理信息导入表"};
+	public static house dataChange(Map<String,String> data){
+		house c=null;
+		 if(data!=null)
+			 c=new house();
+		 if(StringUtil.isNotEmpty(data.get("type"))){
+		  if("自住".equals(data.get("type")))
+			  c.setType(0);
+		 }else if("出租".equals(data.get("type"))){
+			 c.setType(1);
+		 }else if("闲置".equals(data.get("type"))){
+			 c.setType(2);
+		 }
+		 c.setAddress(data.get("address"));
+		 
+		 c.setOwner(data.get("owner"));
+			if(StringUtil.isNotEmpty(c.getAddress())){
+				c.setPinYin(StringUtil.getPY(c.getAddress()));
+			}
+			c.setOwnerCardID(data.get("ownerCardID"));
+			c.setPhone(data.get("phone"));
+			c.setPoliceID(currentUser.getCurrentUser().getPoliceID());
+			if(StringUtil.isNotEmpty(data.get("areaID")))
+			c.setAreaID(Integer.parseInt(data.get("areaID")));
+			c.setAreaName(data.get("areaName"));
+			c.setAdderID(currentUser.getCurrentUser().getId());
+			c.setAdderName(currentUser.getCurrentUser().getName());
+			c.setCreateDate(new Date());
+			c.setIsDelete(false);
+			c.setGenre(data.get("genre"));
+			c.setOwnerWorks(data.get("ownerWorks"));
+			c.setMark(data.get("mark")); 
+		 
+		return c;
+	}
+	
+	
 }

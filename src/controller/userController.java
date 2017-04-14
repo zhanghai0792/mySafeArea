@@ -31,6 +31,7 @@ public class userController extends controllerTemplate<user, userServiceDao, use
 	  userQueryParams query = new userQueryParams();
 		query.setUser(user);
 		user userQuery = serviceDao.login(query);
+		
 		if(userQuery.getType()!=3)
 			throw new Exception("您没有web操作权限,请联系管理员");
 		if(userQuery!=null){
@@ -41,10 +42,10 @@ public class userController extends controllerTemplate<user, userServiceDao, use
 		//  System.err.println(request.getContextPath());
 		  cookie.setPath(request.getContextPath()+"/");
 		  response.addCookie(cookie);
-		
-		  return "controllTest";
+		  request.getSession().setAttribute("user", user);
+		  return "population";
 		}else{
-			return "index";
+			return "redirect:/index.htm";
 		}
   }
   

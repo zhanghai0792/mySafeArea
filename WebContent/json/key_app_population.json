@@ -1,0 +1,15 @@
+[
+{
+	"id":"userId",
+	"text":"身份证号",
+	"valueElement":"textbox",
+	"valueType":"string"
+},
+{
+	"id":"userName",
+	"text":"姓名",
+	"selected":true,
+	"valueElement":"textbox",
+	"valueType":"string"
+}
+]

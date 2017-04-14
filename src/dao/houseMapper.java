@@ -1,8 +1,10 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -58,6 +60,21 @@ public class houseMapper extends basicDaoImpl<house, houseQueryParams>{
 					}
 				}
 				return houses;
+			}
+			
+			
+			public Map<String,Integer> getHouseOfPolic(Integer policeID){
+				String hql="select distinct house.address,house.id from pojo.house house where house.policeID=:policeID";
+				Query query=getSession().createQuery(hql);
+			    query.setInteger("policeID", policeID);
+			    List<Object[]> record=query.list();
+			    Map<String,Integer> results=new HashMap<String,Integer>(0);
+			     if(ListUtil.isNotEmpty(record)){
+			    	 for(Object[] objs:record){
+			    		 results.put((String)objs[0],(Integer)objs[1]);
+			    	 }
+			     }
+			     return results;
 			}
 			
 }

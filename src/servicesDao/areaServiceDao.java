@@ -2,7 +2,7 @@ package servicesDao;
 
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,9 @@ import util.ListUtil;
 @Service
 public class areaServiceDao extends serviceDaoTemplate<area, areaMapper,areaQueryParams> {
   
-	
+	public Map<String,Integer> getAreasOfPolic(Integer policeID){
+		return dao.getAreasOfPolic(policeID);
+	}
 	
 	public int savePhtosInWeb(area record) throws Exception {
 		int count = super.save(record);

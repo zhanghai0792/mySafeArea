@@ -38,4 +38,5 @@ public interface daoTemplate <T extends pojoModel,Query extends queryParamsModel
      int deleteObjectsByIds(List<Integer> ids) throws Exception;
      int updates(List<T> pojos)throws Exception;
      void evict(T t)throws Exception;
+     int insertBatch(List<T> pojos);
 }

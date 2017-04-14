@@ -5,6 +5,7 @@ import java.util.List;
 import factory.applicationFactory;
 import pojo.pojoModel;
 import pojo.user;
+import util.StringUtil;
 public abstract class queryParamsModel<T extends pojoModel>{
 protected user user;
 protected Integer page;
@@ -14,15 +15,21 @@ protected String orderBy;
 protected List<T> pojos;
 protected Integer policeID;
 protected Integer fjid=applicationFactory.fjId;//七里湖分局的id
-protected String condition;
+protected String webCondition;
 
 
-public String getCondition() {
-	return condition;
+public String getWebCondition() {
+	if(StringUtil.isNotEmpty(webCondition))
+		return webCondition.replaceAll("@", "'");
+	return webCondition;
 }
-public void setCondition(String condition) {
-	this.condition = condition;
+
+
+public void setWebCondition(String webCondition) {
+	this.webCondition = webCondition;
 }
+
+
 public abstract T getObj();
 public user getUser() {
 	return user;

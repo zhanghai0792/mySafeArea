@@ -40,6 +40,10 @@ public class houseServiceDao extends serviceDaoTemplate<house, houseMapper,house
 		 return size;
 	}
 
+	public Map<String,Integer> getHouseOfPolic(Integer policeID){
+		return dao.getHouseOfPolic(policeID);
+	}
+	
 	
 	public int updateNoNull(house record) throws Exception {
 		   residentMapper.deleteResidentHouseInfo(record);

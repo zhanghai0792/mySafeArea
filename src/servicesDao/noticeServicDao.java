@@ -11,5 +11,11 @@ import pojo.notice;
 @Service
 public class noticeServicDao extends serviceDaoTemplate<notice, noticeMapper,noticeQueryParams>{
 
+	@Override
+	public int save(notice record) throws Exception {
+		record.setIsDelete(false);
+		return super.save(record);
+	}
+
 
 }

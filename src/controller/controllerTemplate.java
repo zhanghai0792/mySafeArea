@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.userLogin.currentUser;
-
+import controller.util.excelImport;
 import dao.query.queryParamsModel;
 import factory.imagesFactory;
 import json.jsonResult;
@@ -41,8 +41,10 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 	protected serviceDao serviceDao;
 	@Autowired
 	protected MyObjectMapper myObjectMapper;
-	private Class modelInputClasz;
-
+	protected Class modelInputClasz;
+	@Autowired
+	protected excelImport excelImport;
+    protected Class pojoClass;
 	protected Logger logger;
 
 	public controllerTemplate() {
@@ -53,8 +55,20 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 
 		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
 		this.modelInputClasz = (Class<T>) pt.getActualTypeArguments()[2];
+		this.pojoClass= (Class<T>) pt.getActualTypeArguments()[0];
 	}
 
+	@RequestMapping("/importData")
+	@ResponseBody
+	public jsonResult importData(MultipartFile file) throws Exception {
+		 if(file==null||file.getInputStream()==null)
+			 throw new Exception("没有上传的excel文件");
+		List datas=excelImport.readExcelToData(file, pojoClass);
+		int count=serviceDao.insertBatch(datas);
+		return new jsonResult("成功导入【"+count+"】条记录");
+	}
+	
+	
 	@RequestMapping("/getBasic")
 	@ResponseBody
 	public jsonResult getBasic(InputMode map) throws Exception {
@@ -64,8 +78,8 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 			Integer page=null;
 			Integer pageSize=null;
 			if(map!=null){
-				if(StringUtil.isNotEmpty(map.getCondition()))
-					query=map.getCondition();
+				if(StringUtil.isNotEmpty(map.getWebCondition()))
+					query=map.getWebCondition();
 				if(map.getPage()!=null&&map.getPage()>0)
 					page=map.getPage();
 				if(map.getPageSize()!=null&&map.getPageSize()>0&&page!=null)
@@ -115,6 +129,14 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 
 	@RequestMapping("/delete")
 	@ResponseBody
+	public jsonResult delete(@RequestParam("data") String data) throws Exception {
+		if(StringUtil.isEmpty(data))
+			throw new Exception("没有内容");
+		T p=(T)myObjectMapper.readValue(data, pojoClass);
+		return delete(p);
+	}
+	
+	
 	public jsonResult delete(T p) throws Exception {
 		try {
 			int size = -1;
@@ -164,15 +186,32 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 
 	@RequestMapping("/add")
 	@ResponseBody
-	public jsonResult save(T p) throws Exception {
+	public jsonResult save(@RequestParam("data") String data) throws Exception {
+		if(StringUtil.isEmpty(data))
+			throw new Exception("没有内容");
+		T p=(T)myObjectMapper.readValue(data, pojoClass);
 		addPY(p);
 		return insert(p, 0);
 	}
 
+	public jsonResult save(T p) throws Exception {
+		
+		addPY(p);
+		return insert(p, 0);
+	}
+
+	public jsonResult update(T p) throws Exception {
+		addPY(p);
+		return update(p, 1);
+	}
+	
 	
 	@RequestMapping("/update")
 	@ResponseBody
-	public jsonResult update(T p) throws Exception {
+	public jsonResult update(@RequestParam("data") String data) throws Exception {
+		if(StringUtil.isEmpty(data))
+			throw new Exception("没有内容");
+		T p=(T)myObjectMapper.readValue(data, pojoClass);
 		addPY(p);
 		return update(p, 1);
 	}
@@ -526,6 +565,14 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 
 	public void setMyObjectMapper(json.MyObjectMapper myObjectMapper) {
 		this.myObjectMapper = myObjectMapper;
+	}
+
+	public excelImport getExcelImport() {
+		return excelImport;
+	}
+
+	public void setExcelImport(excelImport excelImport) {
+		this.excelImport = excelImport;
 	}
 
 }

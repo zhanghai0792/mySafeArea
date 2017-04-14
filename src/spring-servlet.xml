@@ -36,8 +36,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/" />
-		<property name="suffix" value=".htm" />
+		<property name="prefix" value="/Jsps/" />
+		<property name="suffix" value=".jsp?target=0" />
 	</bean>
 
 	<mvc:default-servlet-handler />

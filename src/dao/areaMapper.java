@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -18,7 +20,19 @@ public class areaMapper extends basicDaoImpl<area,areaQueryParams>{
 		return super.deletesObjects(map.getPojos());
 	}
 
-
+public Map<String,Integer> getAreasOfPolic(Integer policeID){
+	String hql="select area.name,area.id from pojo.area area where area.policeID=:policeID";
+	Query query=getSession().createQuery(hql);
+    query.setInteger("policeID", policeID);
+    List<Object[]> record=query.list();
+    Map<String,Integer> results=new HashMap<String,Integer>(0);
+     if(ListUtil.isNotEmpty(record)){
+    	 for(Object[] objs:record){
+    		 results.put((String)objs[0],(Integer)objs[1]);
+    	 }
+     }
+     return results;
+}
 	
 	public area selectByPrimaryKey(Integer id) throws Exception {
 		String hql="select distinct area from pojo.area area left join fetch area.photos where area.id=:id";

@@ -15,7 +15,7 @@ public class news implements pojoModel{
 	private Integer id;//主键
 	private String title;//标题
 	private String content;//内容（html）
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date releaseTime;//发布时间
 	private Integer releaseID;//发布人ID
 	private Boolean headlineMarker;//头条标记（最多五个）

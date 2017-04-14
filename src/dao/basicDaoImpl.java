@@ -272,6 +272,14 @@ public long count(String condition)throws Exception{
 	 return (Long) query.uniqueResult();
 }
 	
-	
+public  int insertBatch(List<T> pojos){
+	int count=0;
+	 for(T t:pojos){
+		 getSession().save(t);
+		 getSession().evict(t);
+		 count=count+1;
+	 }
+	return count;
+}
 
 }

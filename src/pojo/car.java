@@ -1,9 +1,11 @@
 package pojo;
 
 import java.util.Date;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import controller.userLogin.currentUser;
 import factory.applicationFactory;
 import util.StringUtil;
 
@@ -179,7 +181,50 @@ public void setPoliceName(String policeName) {
 	this.policeName = policeName;
 }
 
+/*
 
-
+	`plateNum`, 
+	`color`, 
+	`brand`, 
+	`carNum`, 
+	`owner`, 
+	`pinYin`, 
+	`cardID`,
+	`phone`, 
+	`policeID`, 
+	`areaID`, 
+	`adderID`, 
+	`createDate`, 
+	`isDelete`, 
+	`areaName`, 
+	`adderName`,
+	`mark` 
+ * */
+public static String[] excelFormate=new String[]{"plateNum","color","brand","carNum","owner","cardID","phone","areaName","mark","八里湖分局辖区车辆管理信息导入表"};
+public static car dataChange(Map<String,String> data){
+	car c=null;
+	if(data!=null)
+		c=new car();
+	c.setPlateNum(data.get("plateNum"));
+	c.setColor(data.get("color"));
+	c.setBrand(data.get("brand"));
+	c.setCarNum(data.get("carNum"));
+	c.setOwner(data.get("owner"));
+	if(StringUtil.isNotEmpty(c.getOwner())){
+		c.setPinYin(StringUtil.getPY(c.getOwner()));
+	}
+	c.setCardID(data.get("cardID"));
+	c.setPhone(data.get("phone"));
+	c.setPoliceID(currentUser.getCurrentUser().getPoliceID());
+	if(StringUtil.isNotEmpty(data.get("areaID")))
+	c.setAreaID(Integer.parseInt(data.get("areaID")));
+	c.setAreaName(data.get("areaName"));
+	c.setAdderID(currentUser.getCurrentUser().getId());
+	c.setAdderName(currentUser.getCurrentUser().getName());
+	c.setCreateDate(new Date());
+	c.setIsDelete(false);
+	c.setMark(data.get("mark"));
+	return c;
+}
 
 }

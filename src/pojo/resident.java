@@ -1,11 +1,14 @@
 package pojo;
 
 import java.util.Date;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import controller.userLogin.currentUser;
 import factory.applicationFactory;
+import util.StringUtil;
 
 public class resident implements pojoModel {
 	public static final int photoType = 0;
@@ -219,8 +222,73 @@ public class resident implements pojoModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+/*
+ 
+`cardID`,
+ `name`, 
+`pinYin`,
+ `nation`,
+ `address`,
+ `phone`, 
+`houseID`, 
+`adderID`, 
+`createDate`,
+ `isDelete`, 
+ `houseName`,
+ `adderName`,
+ `areaID`, 
+`policeID`,
+ `pCategory`,
+ `work`,
+ `mark`, 
+`sex`, 
+`birthay` 
+ * */
 	
+	public static String[] excelFormate=new String[]{"name","cardID","sex","birthday","nation","address","phone","pCategory","work","houseName","areaName","八里湖分局辖区居住人口管理信息导入表"};
+	public static resident dataChange(Map<String,String> data){
+		resident c=null;
+		 if(data!=null)
+			 c=new resident();
+		 c.setName(data.get("name"));
+		 c.setAdress(data.get("address"));
+		 c.setNation(data.get("nation"));
+		c.setHouseName(data.get("houseName"));
+		c.setpCategory(data.get("pCategory"));
+		c.setWork(data.get("work"));
+		c.setSex(data.get("sex"));
+		if(StringUtil.isNotEmpty(data.get("birthday"))){
+			String birthday=data.get("birthday");
+			birthday.replaceAll("/", "-");
+			//birthday.replaceAll("\\", "-");
+			birthday.replaceAll(".", "-");
+			try {
+				c.setBirthay(StringUtil.StringToDateTime(birthday));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(StringUtil.isNotEmpty(data.get("houseID")))
+		   c.setHouseID(Integer.parseInt(data.get("houseID")));
+		
+			if(StringUtil.isNotEmpty(c.getName())){
+				c.setPinYin(StringUtil.getPY(c.getName()));
+			}
+			c.setCardID(data.get("cardID"));
+			c.setPhone(data.get("phone"));
+			c.setPoliceID(currentUser.getCurrentUser().getPoliceID());
+			if(StringUtil.isNotEmpty(data.get("areaID")))
+			c.setAreaID(Integer.parseInt(data.get("areaID")));
+			c.setAreaName(data.get("areaName"));
+			c.setAdderID(currentUser.getCurrentUser().getId());
+			c.setAdderName(currentUser.getCurrentUser().getName());
+			c.setCreateDate(new Date());
+			c.setIsDelete(false);
+			c.setMark(data.get("mark")); 
+		 
+		return c;
+	}
 
 	
 

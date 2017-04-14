@@ -1,10 +1,13 @@
 package pojo;
 
 import java.util.Date;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import controller.userLogin.currentUser;
 import factory.applicationFactory;
+import util.StringUtil;
 
 public class shop implements pojoModel{
 private Integer id;//主键
@@ -166,6 +169,33 @@ public shop(shop shop, String areaName, String adderName) {
 public shop() {
 	super();
 	// TODO Auto-generated constructor stub
+}
+
+public static String[] excelFormate=new String[]{"name","address","businessScope","owner","cardID","phone","areaName","mark","八里湖分局辖区商铺管理信息导入表"};
+public static shop dataChange(Map<String,String> data){
+	shop c=null;
+	 if(data!=null)
+		 c=new shop();
+	 c.setName(data.get("name"));
+	 c.setAddress(data.get("address"));
+	 c.setBusinessScope(data.get("businessScope"));
+	 c.setOwner(data.get("owner"));
+		if(StringUtil.isNotEmpty(c.getName())){
+			c.setPinYin(StringUtil.getPY(c.getName()));
+		}
+		c.setCardID(data.get("cardID"));
+		c.setPhone(data.get("phone"));
+		c.setPoliceID(currentUser.getCurrentUser().getPoliceID());
+		if(StringUtil.isNotEmpty(data.get("areaID")))
+		c.setAreaID(Integer.parseInt(data.get("areaID")));
+		c.setAreaName(data.get("areaName"));
+		c.setAdderID(currentUser.getCurrentUser().getId());
+		c.setAdderName(currentUser.getCurrentUser().getName());
+		c.setCreateDate(new Date());
+		c.setIsDelete(false);
+		c.setMark(data.get("mark")); 
+	 
+	return c;
 }
 
 
