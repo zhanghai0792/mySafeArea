@@ -1,12 +1,12 @@
 [
 {
-	"id":"userId",
+	"id":"resident.cardID",
 	"text":"身份证号",
 	"valueElement":"textbox",
 	"valueType":"string"
 },
 {
-	"id":"userName",
+	"id":"resident.name",
 	"text":"姓名",
 	"selected":true,
 	"valueElement":"textbox",

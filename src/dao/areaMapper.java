@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import dao.query.areaQueryParams;
+import factory.applicationFactory;
 import pojo.area;
 import pojo.house;
 import util.ListUtil;
@@ -21,9 +22,10 @@ public class areaMapper extends basicDaoImpl<area,areaQueryParams>{
 	}
 
 public Map<String,Integer> getAreasOfPolic(Integer policeID){
-	String hql="select area.name,area.id from pojo.area area where area.policeID=:policeID";
+	String hql="select area.name,area.id from pojo.area area where area.policeID=:policeID or :fj=:policeID";
 	Query query=getSession().createQuery(hql);
     query.setInteger("policeID", policeID);
+    query.setInteger("fj", applicationFactory.fjId);
     List<Object[]> record=query.list();
     Map<String,Integer> results=new HashMap<String,Integer>(0);
      if(ListUtil.isNotEmpty(record)){

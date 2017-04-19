@@ -9,7 +9,7 @@
 		<id name="id">
 			<generator class="native" />
 		</id>
-		<property name="phone" column="phone" />
+		<property name="phone" column="phone" unique="true"/>
 		<property name="name" column="name" />
 		<property name="password" column="password" />
 		<property name="type" column="type" />

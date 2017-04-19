@@ -1,5 +1,6 @@
 package dao.query;
 
+import controller.userLogin.currentUser;
 import pojo.policeStation;
 
 public class policeStationQueryParams  extends queryParamsModel<policeStation>{
@@ -18,7 +19,9 @@ public class policeStationQueryParams  extends queryParamsModel<policeStation>{
 
 	
 	public String getBasicQueryCondition() {
-		return " where (:policeID IS NULL or policeStation.id=:policeID)";
+		if(policeID==null)
+			 policeID=currentUser.getCurrentUser().getPoliceID();
+		return " where (:policeID = :fjid or policeStation.id=:policeID)";
 	}
 
 	

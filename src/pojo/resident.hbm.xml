@@ -9,7 +9,7 @@
 		<id name="id">
 			<generator class="native" />
 		</id>
-		<property name="cardID" column="cardID" />
+		<property name="cardID" column="cardID" unique="true"/>
 		<property name="name" column="name" />
 		<property name="pinYin" column="pinYin" />
 		<property name="nation" column="nation" />

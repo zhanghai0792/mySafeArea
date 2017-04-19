@@ -91,7 +91,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<value>pojo/reply.hbm.xml</value>
 				<value>pojo/resident.hbm.xml</value>
 				<value>pojo/shop.hbm.xml</value>
-				<value>pojo/user.hbm.xml</value>	
+				<value>pojo/user.hbm.xml</value>
+				<value>pojo/version1.hbm.xml</value>		
 			</list>
 		</property>
 	</bean>

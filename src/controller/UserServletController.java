@@ -46,6 +46,7 @@ public class UserServletController extends controllerTemplate<user, userServiceD
 			return new jsonResult(false, "操作对象未传递");
 		}
 		if(method==3){
+			System.err.println("调用登录");
 			return login(params,method);
 		}
 		userQueryParams data = (userQueryParams) myObjectMapper.readValue(params, userQueryParams.class);

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.summaryMapper;
 import dao.query.summaryQueryParams;
@@ -52,18 +53,22 @@ public class areaSummarController extends controllerTemplate<summaryPojo, summar
          
 	}
 	@RequestMapping("/car")
+	@ResponseBody
 	public jsonResult carSummary()throws Exception{
 		return getAllAreaSummary(car.class);
 	}
 	@RequestMapping("/house")
+	@ResponseBody
 	public jsonResult houseSummary()throws Exception{
 		return getAllAreaSummary(house.class);
 	}
 	@RequestMapping("/resident")
+	@ResponseBody
 	public jsonResult residentSummary()throws Exception{
 		return getAllAreaSummary(pojo.resident.class);
 	}
 	@RequestMapping("/shop")
+	@ResponseBody
 	public jsonResult shopSummary()throws Exception{
 		return getAllAreaSummary(shop.class);
 	}

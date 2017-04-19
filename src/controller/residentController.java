@@ -29,7 +29,7 @@ public class residentController extends controllerTemplate<resident,residentServ
 	}
 	public Object insertBeforDeal(resident p) throws Exception {
 		p.setAdderName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(resident p) throws Exception {

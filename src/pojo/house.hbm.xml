@@ -9,7 +9,7 @@
 			<generator class="native"/>
 		</id>
 		<property name="areaID" />
-		<property name="address"/>
+		<property name="address" unique="true"/>
 		<property name="type"/>
 		<property name="owner"/>
 		<property name="pinYin"/>

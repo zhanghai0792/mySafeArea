@@ -33,6 +33,7 @@ public class newsServiceDao extends serviceDaoTemplate<news, newsMapper,newsQuer
 	
 	public int delete(news record) throws Exception {
 		record.setPhotos(null);
+		updateNoNull(record);
 		return super.delete(record);
 	}
 
@@ -52,6 +53,8 @@ public class newsServiceDao extends serviceDaoTemplate<news, newsMapper,newsQuer
 	public List<String> getPhotos(news a)throws Exception{
 		news aTemp=dao.load(a.getId());
 		List<String> oldPhotos=aTemp.getPhotos();
+		if(ListUtil.isNotEmpty(aTemp.getPhotos()))
+			   aTemp.getPhotos().size();
 		 dao.evict(aTemp);
 		return oldPhotos;
 	}

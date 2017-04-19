@@ -471,6 +471,7 @@ public void deleteAfterDeal(List<T> POJOS)throws Exception{
 	@RequestMapping("")
 	@ResponseBody
 	public jsonResult deal(@RequestParam("method") Integer method, @RequestParam("params") String params) throws Exception {
+		logger.debug(params);
 		if (StringUtil.isEmpty(params)) {
 			return new jsonResult(false, "操作对象未传递");
 		}

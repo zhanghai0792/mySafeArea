@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pojo.interaction" table="interaction">
+	 <cache usage="read-write" />  
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" column="title"/>
+		<property name="content" column="content" type="text"/>
+		<property name="releaseTime" column="releaseTime" type="timestamp"/>
+		<property name="agreeNum" column="agreeNum"/>
+		<property name="isDelete" column="isDelete"/>
+		<property name="releaseID" column="releaseID"/>
+			<list name="photos" table="interaction_img">
+		<key column="interaction_id"/>
+		<index column="imge_index"/>
+		<element column="img_url" type="string"/>
+	</list>
+	
+		<set name="replies" cascade="save-update" inverse="true">
+			<key column="interactionID"/>
+			<one-to-many class="pojo.reply"/>
+			</set>
+
+		<set name="agrees" inverse="true">
+			<key column="interactionID"/>
+			<one-to-many class="pojo.agree"/>
+			</set> 
+	 
+  		<property name="releaseName"/>
+   <property name="commentNum" formula="(select count(myreply_a.id) from reply myreply_a where myreply_a.interactionID=id and  myreply_a.type!=2 and !myreply_a.isDelete)"/>
+<property name="replyNum" formula="(select count(myreply_b.id) from reply myreply_b where myreply_b.interactionID=id and  myreply_b.type=2 and !myreply_b.isDelete)"/>
+	<property name="header" formula="(select myUser.header from user myUser where myUser.id=releaseID)"/>
+	</class>
+</hibernate-mapping>

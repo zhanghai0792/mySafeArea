@@ -1,0 +1,15 @@
+[
+{
+	"id":"house.owner",
+	"text":"房主姓名",
+	"valueElement":"textbox",
+	"valueType":"string"
+},
+{
+	"id":"house.ownerCardID",
+	"text":"房主身份证号",
+	"selected":true,
+	"valueElement":"textbox",
+	"valueType":"string"
+}
+]

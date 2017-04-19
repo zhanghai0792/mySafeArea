@@ -8,7 +8,7 @@
 		<id name="id">
 			<generator class="native"/>
 		</id>
-		<property name="plateNum" />
+		<property name="plateNum" unique="true"/>
 		<property name="color"/>
 		<property name="brand"/>
 		<property name="carNum"/>

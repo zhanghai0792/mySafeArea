@@ -1,8 +1,17 @@
 .icon-blank{
 	background:url('icons/blank.gif') no-repeat center center;
 }
-.icon-xls{
-	background:url('icons/xls.png') no-repeat center center;
+.icon-car{
+	background:url('icons/car.png') no-repeat center center;
+}
+.icon-new{
+	background:url('icons/new.png') no-repeat center center;
+}
+.icon-shop{
+	background:url('icons/shop.png') no-repeat center center;
+}
+.icon-house{
+	background:url('icons/house.png') no-repeat center center;
 }
 .icon-add{
 	background:url('icons/edit_add.png') no-repeat center center;
@@ -67,10 +76,15 @@
 .icon-lock{
 	background:url('icons/lock.png') no-repeat center center;
 }
+.icon-unlock{
+	background:url('icons/unlock.png') no-repeat center center;
+}
 .icon-more{
 	background:url('icons/more.png') no-repeat center center;
 }
-
+.icon-config{
+	background:url('icons/config.png') no-repeat center center;
+}
 
 .icon-mini-add{
 	background:url('icons/mini_add.png') no-repeat center center;
@@ -96,4 +110,131 @@
 }
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
+}
+.icon-menu{
+	background:url('icons/menu.png') no-repeat center center;
+}
+.icon-upload{
+	background:url('icons/upload.png') no-repeat center center;
+}
+.icon-download{
+	background:url('icons/download.png') no-repeat center center;
+}
+.icon-xls{
+	background:url('icons/xls.png') no-repeat center center;
+}
+.icon-zip{
+	background:url('icons/zip.png') no-repeat center center;
+}
+
+.icon-down{
+	background:url('icons/down.png') no-repeat center center;
+}
+.icon-notice{
+	background:url('icons/notice.png') no-repeat center center;
+}
+.icon-info_32{
+	background:url('icons/info_32.png') no-repeat center center;
+}
+.icon-historyorder_32{
+	background:url('icons/historyorder_32.png') no-repeat center center;
+}
+.icon-order_32{
+	background:url('icons/order_32.png') no-repeat center center;
+}
+.icon-restorder_32{
+	background:url('icons/restorder_32.png') no-repeat center center;
+}
+.icon-messcountorder_32{
+	background:url('icons/messcountorder_32.png') no-repeat center center;
+}
+.icon-orderregular_32{
+	background:url('icons/orderregular_32.png') no-repeat center center;
+}
+.icon-empmanage_32{
+	background:url('icons/empmanage_32.png') no-repeat center center;
+}
+.icon-groupmanage_32{
+	background:url('icons/groupmanage_32.png') no-repeat center center;
+}
+.icon-messmanage_32{
+	background:url('icons/messmanage_32.png') no-repeat center center;
+}
+.icon-linemanage_32{
+	background:url('icons/linemanage_32.png') no-repeat center center;
+}
+.icon-displaynotice_32{
+	background:url('icons/displaynotice_32.png') no-repeat center center;
+}
+.icon-move_down{
+	background:url('icons/move_down.png') no-repeat center center;
+}
+.icon-move_up{
+	background:url('icons/move_up.png') no-repeat center center;
+}
+.icon-group{
+	background:url('icons/group.png') no-repeat center center;
+}
+.icon-order{
+	background:url('icons/order.png') no-repeat center center;
+}
+.icon-exchange{
+	background:url('icons/exchange.png') no-repeat center center;
+}
+
+.icon-history{
+	background:url('icons/history.png') no-repeat center center;
+}
+
+.icon-holiday{
+	background:url('icons/holiday.png') no-repeat center center;
+}
+.icon-notice16{
+	background:url('icons/notice_16.png') no-repeat center center;
+}
+.icon-notice2{
+	background:url('icons/notice2.png') no-repeat center center;
+}
+.icon-regular{
+	background:url('icons/regular.png') no-repeat center center;
+}
+.icon-money{
+	background:url('icons/money.png') no-repeat center center;
+}
+.icon-workshop{
+	background:url('icons/workshop.png') no-repeat center center;
+}
+.icon-backup{
+	background:url('icons/backup.png') no-repeat center center;
+}
+.icon-import{
+	background:url('icons/import.png') no-repeat center center;
+}
+.icon-exit{
+	background:url('icons/exit.png') no-repeat center center;
+}
+.icon-route{
+	background:url('icons/route.png') no-repeat center center;
+}
+.icon-cart-put{
+	background:url('icons/cart-put.png') no-repeat center center;
+}
+.icon-cart-go{
+	background:url('icons/cart-go.png') no-repeat center center;
+}
+
+.icon-key{
+	background:url('icons/key.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat center center;
+}
+.icon-department{
+	background:url('icons/department.png') no-repeat center center;
+}
+.icon-eat{
+	background:url('icons/eat.png') no-repeat center center;
+}
+.icon-company{
+	background:url('icons/company.png') no-repeat center center;
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import org.aspectj.org.eclipse.jdt.core.dom.SuperConstructorInvocation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,12 +33,12 @@ public class newsController extends controllerTemplate<news, newsServiceDao, new
 	}
 	public Object insertBeforDeal(news p) throws Exception {
 		p.setReleaseName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(news p) throws Exception {
 		p.setReleaseName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.updateBeforDeal(p);
 	}
 	
 }

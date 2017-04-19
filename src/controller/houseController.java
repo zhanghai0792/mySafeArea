@@ -37,7 +37,7 @@ public class houseController extends controllerTemplate<house, houseServiceDao, 
 	
 	public Object insertBeforDeal(house p) throws Exception {
 		p.setAdderName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(house p) throws Exception {

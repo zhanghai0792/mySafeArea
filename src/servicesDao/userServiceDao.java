@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Service;
 
 import dao.userMapper;
@@ -32,6 +33,7 @@ public class userServiceDao extends serviceDaoTemplate<user, userMapper, userQue
 	public user login(String phone,String pwd) throws Exception{
      	return	dao.login(phone, pwd);
 	}
+	
 	public user login(userQueryParams query) throws Exception{
      	 if(query!=null&&query.getUser()!=null&&StringUtil.isNotEmpty(query.getUser().getPhone())&&StringUtil.isNotEmpty(query.getUser().getPassword())){
      		return	dao.login(query.getUser().getPhone(), query.getUser().getPassword());
@@ -43,6 +45,13 @@ public class userServiceDao extends serviceDaoTemplate<user, userMapper, userQue
 	
 	
 	
+
+	public int insertBatch(List<user> pojos) throws Exception {
+		
+		int x= super.insertBatch(pojos);
+		dao.updates(pojos);
+		return x;
+	}
 	public int updateNoNull(user record) throws Exception {
 		// TODO Auto-generated method stub
 		int count = super.updateNoNull(record);

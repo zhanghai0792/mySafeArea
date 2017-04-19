@@ -46,6 +46,7 @@ public class areaServiceDao extends serviceDaoTemplate<area, areaMapper,areaQuer
 	
 	public int delete(area record) throws Exception {
 		record.setPhotos(null);
+		updateNoNull(record);
 		return super.delete(record);//进到父类该方法上传area对象
 	}
 
@@ -73,6 +74,8 @@ public class areaServiceDao extends serviceDaoTemplate<area, areaMapper,areaQuer
 	public List<String> getPhotos(area a)throws Exception{
 		area aTemp=dao.load(a.getId());
 		List<String> oldPhotos=aTemp.getPhotos();
+		 if(ListUtil.isNotEmpty(aTemp.getPhotos()))
+			   aTemp.getPhotos().size();
 		 dao.evict(aTemp);
 		return oldPhotos;
 	}

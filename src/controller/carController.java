@@ -32,7 +32,7 @@ public class carController extends controllerTemplate<car, carServiceDao, carQue
 	
 	public Object insertBeforDeal(car p) throws Exception {
 		p.setAdderName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(car p) throws Exception {

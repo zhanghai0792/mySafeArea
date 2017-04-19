@@ -1,6 +1,7 @@
 package controller.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,7 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -19,11 +23,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 import controller.userLogin.currentUser;
+import factory.applicationFactory;
+import pojo.area;
 import pojo.car;
 import pojo.house;
+import pojo.policeStation;
 import pojo.resident;
 import pojo.shop;
+import pojo.user;
 import servicesDao.areaServiceDao;
 import servicesDao.houseServiceDao;
 import util.StringUtil;
@@ -40,9 +50,13 @@ public class excelImport {
 	   Map<String,Integer> areas=null;
 	   Map<String,Integer> houses=null;
 	   String[] dataFormate=null;
-	   if(claz!=car.class&&claz!=shop.class&&claz!=house.class&&claz!=resident.class)
+	   if(claz!=car.class&&claz!=shop.class&&claz!=house.class&&claz!=resident.class&&claz!=area.class&&claz!=policeStation.class&&claz!=user.class)
 		   throw new Exception("当前没有开放此模块导入功能");
+	  if(claz==car.class||claz==shop.class||claz==house.class||claz==resident.class||claz==user.class){
+		  if(claz!=user.class)
 	   areas=areaDao.getAreasOfPolic(currentUser.getCurrentUser().getPoliceID());
+		  else
+			  areas=areaDao.getAreasOfPolic(applicationFactory.fjId);  
 	   if(areas==null||areas.size()==0)
 		   throw new Exception("小区表没有记录，请添加小区信息");
 	   if(claz==resident.class){
@@ -59,11 +73,64 @@ public class excelImport {
 		   dataFormate=shop.excelFormate;
 	   }else if(claz==resident.class){
 		   dataFormate=resident.excelFormate;
-	   }
-	   
+	   }else if(claz==user.class){
+		   dataFormate=user.excelFormate;
+	   } 
 	   return analysisExcel(mFile.getInputStream(), dataFormate, areas, houses, isResident,claz);
+	   }else{
+		   if(claz==area.class){
+			   dataFormate=area.excelFormate;
+		   }else if(claz==policeStation.class){
+			   dataFormate=policeStation.excelFormate;
+		   }
+	   
+	    return analysisExcel(mFile.getInputStream(), dataFormate,claz);
+	   }
    }
-   
+   public  List analysisExcel(InputStream file,String[] excelTemp,Class claz) throws Exception{
+	   Workbook workbook = WorkbookFactory.create(file);// ---统一实现
+	 		Sheet sheet = workbook.getSheetAt(0);// 获得第一个工作簿对象
+	 		Row row = null;
+	 		
+	 		ArrayList list = new ArrayList(0);// 定义map对象用于保存读取到的excel文件
+	 		Row rowField1 = sheet.getRow(0);
+	               if(!excelTemp[excelTemp.length-1].equals(getValue(rowField1.getCell(0)))){
+	            		System.out.println("导入excel的模板与数据不匹配");   
+	            	   return null;
+	            		   }
+	               System.out.println("开始读取excel的数据");  
+	 		Row rowField = sheet.getRow(2);// 获得表格字段
+	 		for (int i = 2; i <= sheet.getLastRowNum(); i++) {// 循环单元格
+	 			
+	 			HashMap<String, String> map = new HashMap<String, String>(0);
+	 			row = sheet.getRow(i);
+	 			int k = 0;
+	 			if (row != null) {
+	 				for (int j = 0; j < rowField.getLastCellNum(); j++) {// 循环列
+	 					if (rowField.getCell(j) != null) {// 此列的字段值不为空
+	 						String val = getValue(row.getCell(j));
+	 						if (val == null || "".equals(val))
+	 							k++;
+	 						map.put(excelTemp[j], val);
+	 					}
+
+	 				}
+	 			}
+	 			if (k != rowField.getLastCellNum()){
+	 				
+	 				if(claz==area.class){
+	 					list.add(area.dataChange(map));
+	 				}else if(claz==policeStation.class){
+	 					list.add(policeStation.dataChange(map));
+	 				}				
+	 				}
+	 		}
+	 		workbook.close();
+	 		file.close();
+	 		return list; 
+	   
+	   
+   }
   
    public  List analysisExcel(InputStream file,String[] excelTemp,Map<String,Integer> areas,Map<String,Integer> houses,boolean isResident,Class claz) throws Exception {
 		
@@ -100,6 +167,7 @@ public class excelImport {
 				}
 			}
 			if (k != rowField.getLastCellNum()){
+				if(claz!=user.class){
 				areaName=map.get("areaName");
 				if(StringUtil.isEmpty(areaName)){
 					throw new Exception("存在记录没有小区名,无法导入");
@@ -108,6 +176,7 @@ public class excelImport {
 				if(areaID==null)
 					throw new Exception(map.get("areaName")+"在本系统的小区表中不存在");
 				map.put("areaID", areaID+"");
+				}
 				
 				if(isResident){
 					houseName=map.get("houseName");
@@ -127,6 +196,8 @@ public class excelImport {
 					list.add(house.dataChange(map));
 				}else if(claz==resident.class){
 					list.add(resident.dataChange(map));
+				}else if(claz==user.class){
+					list.add(user.dataChange(map));
 				}				
 				}
 		}

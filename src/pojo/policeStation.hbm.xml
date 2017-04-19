@@ -8,6 +8,6 @@
 		<id name="id">
 			<generator class="native"/>
 		</id>
-		<property name="name" />
+		<property name="name" unique="true"/>
 	</class>
 </hibernate-mapping>

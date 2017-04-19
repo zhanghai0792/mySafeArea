@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="pojo.reply" table="reply" where="!isDelete">
+	 <cache usage="read-write" />  
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="interactionID" column="interactionID" />
+		<property name="content" column="content" type="text"/>
+		<property name="replyerID" column="replyerID" />
+		<!-- <property name="replyerName" column="replyerName" /> -->
+		<property name="replyTime" column="replyTime" type="timestamp"/>
+		<property name="type" column="type" />
+		<property name="isDelete" column="isDelete" />
+		 <property name="replyerName"/>
+		  <property name="replyHeader"/>
+	</class>
+
+</hibernate-mapping>

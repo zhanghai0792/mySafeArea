@@ -25,7 +25,7 @@ public class noticeController extends controllerTemplate<notice, noticeServicDao
 	
 	public Object insertBeforDeal(notice p) throws Exception {
 		p.setReleaseName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(notice p) throws Exception {

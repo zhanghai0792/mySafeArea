@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="pojo.resident" table="resident">
+	 <cache usage="read-write" />  
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="cardID" column="cardID" />
+		<property name="name" column="name" />
+		<property name="pinYin" column="pinYin" />
+		<property name="nation" column="nation" />
+		<property name="adress" column="adress" />
+		<property name="phone" column="phone" />
+		<property name="houseID" column="houseID" />
+		<property name="adderID" column="adderID" />
+		<property name="createDate" column="createDate" type="date"/>
+		<property name="isDelete" column="isDelete" />
+		<property name="header" type="string"/>											
+<property name="houseName" type="string"/>											
+<property name="adderName" type="string"/>
+<property name="pCategory" type="string"/>	
+<property name="work" type="string"/>
+<property name="mark" type="string"/>
+<property name="areaID"/>
+<property name="sex"/>
+<property name="birthay" type="date"/>
+<property name="areaName" formula="(select area.name from area area where area.id=areaID)"/>
+<property name="policeID"/>
+<!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->
+	</class>
+
+</hibernate-mapping>

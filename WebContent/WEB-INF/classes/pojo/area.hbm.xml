@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pojo.area" table="area">
+	    <cache usage="read-write" />  
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" />
+		<property name="introduction" type="text"/>
+		<!-- <property name="policeStation"/> -->
+		<property name="policeID"/>
+		<!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->
+		<property name="isDelete"/>
+	<list name="photos" table="area_img">
+		<key column="area_id"/>
+		<index column="imge_index"/>
+		<element column="img_url" type="string"/>
+	</list>
+	</class>
+</hibernate-mapping>

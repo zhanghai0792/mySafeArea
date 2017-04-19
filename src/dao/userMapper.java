@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -51,5 +52,13 @@ public class userMapper extends basicDaoImpl<user,userQueryParams>{
 		query.setInteger("pojoID",record.getId());
 		return query.executeUpdate();
 	}
-
+	public int updates(List<user> pojos)throws Exception{
+		List<Integer> ids=new ArrayList<Integer>(0);
+		 for(user u:pojos)
+			 ids.add(u.getId());
+		String hql="update user user,area area set user.areaName=area.name where user.areaID=area.id and user.id in(:ids)";
+		SQLQuery query=getSession().createSQLQuery(hql);
+		query.setParameterList("ids", ids);
+		return query.executeUpdate();
+	}
 }

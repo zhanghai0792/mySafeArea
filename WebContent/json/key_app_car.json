@@ -1,0 +1,29 @@
+[
+{
+	"id":"car.plateNum",
+	"text":"车牌号",
+	"valueElement":"textbox",
+	"valueType":"string"
+},
+{
+	"id":"car.owner",
+	"text":"车主姓名",
+	"selected":true,
+	"valueElement":"textbox",
+	"valueType":"string"
+},
+{
+	"id":"car.cardID",
+	"text":"车主身份证号",
+	"selected":true,
+	"valueElement":"textbox",
+	"valueType":"string"
+},
+{
+	"id":"car.carNum",
+	"text":"车架号",
+	"selected":true,
+	"valueElement":"textbox",
+	"valueType":"string"
+}
+]

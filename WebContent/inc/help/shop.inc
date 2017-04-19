@@ -1,21 +1,8 @@
-﻿<h4>添加食堂</h4>
-<p>单击<a class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a>按钮,将在食堂表格中增加一个空白行</p>
-<p>输入食堂基本信息</p>
-<p>单击<a class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a></p>
-
-<h4>删除食堂</h4>
-<p>单击表格行左边的复选框选中一行（可多选）,再单击<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>按钮</p>
-<p>单击<a class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a></p>
-
-<h4>修改食堂</h4>
-<p>双击列表中的一行，编辑要修改的列的信息</p>
-<p>单击<a class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a></p>
-
-<h4>批量保存和撤销</h4>
-<p>可以在执行多个添加、删除、修改等操作后批量保存</p>
-<p>可单击<a class="easyui-linkbutton" data-options="iconCls:'icon-undo'">撤销</a>按钮撤销所有未保存的操作</p>
-
-<h4>操作反馈</h4>
-<p>保存操作会有执行结果反馈</p>
-<p>反馈消息出现在窗口右下角，持续显示3~10秒后自动消失，也可直接关闭</p>
-<p>如果需要更长时间查看反馈结果，可以通过鼠标单击来激活该提示窗口</p>
+﻿
+<h4>查找商铺</h4>
+<p>选择检索的条件，使用下拉框选择。在输入框中输入条件，可多条件 单击<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'">增加条件</a>按钮 然后点击<a class="easyui-linkbutton" data-options="iconCls:'icon-search'">查找</a></p>
+<p>当需要重新检索时，可以单击<a class="easyui-linkbutton" >重置查询</a>按钮, 查询条件会重置，再重新输入条件，去查询</p>
+<h4>导入</h4>
+<p>单击<a class="easyui-linkbutton" data-options="iconCls:'icon-import'">导入</a>选择要导入的excel文件单击<a class="easyui-linkbutton" data-options="iconCls:'icon-import'">导入数据</a>就可以将数据导入到系统中</p>
+<h4>导出</h4>
+<p>单击<a class="easyui-linkbutton" data-options="iconCls:'icon-xls'">导出</a>会将所有的查询到的信息导出到excel文档中</p>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="pojo.shop" table="shop">
+	 <cache usage="read-write" />
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" />
+		<property name="address" column="address" />
+		<property name="businessScope" column="businessScope" />
+		<property name="owner" column="owner" />
+		<property name="pinYin" column="pinYin" />
+		<property name="phone" column="phone" />
+		<property name="areaID" column="areaID" />
+		<property name="adderID" column="adderID" />
+		<property name="cardID" column="cardID" />
+		<property name="isDelete" column="isDelete" />
+		<property name="createDate" column="createDate" type="date"/>
+		<property name="areaName"/>
+		<property name="adderName"/>	
+		<property name="photo"/>										
+<property name="policeID"/>
+<property name="mark"/>
+<!-- <property name="policeName" formula="(select pol.name from policeStation pol where pol.id=policeID)"/> -->
+	</class>
+
+</hibernate-mapping>

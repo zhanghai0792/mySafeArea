@@ -1,4 +1,4 @@
-﻿<input class="easyui-combobox" style="width:100px;" id="cmb_key" data-options="onSelect:changeKey,url:'<%=key_json %>',valueField:'id',textField:'text',editable:false"/>
+﻿<input class="easyui-combobox" style="width:120px;" id="cmb_key" data-options="onSelect:changeKey,url:'<%=key_json %>',valueField:'id',textField:'text',editable:false"/>
 <input class="easyui-combobox" style="width:50px;" id="cmb_relation" data-options="url:'json/relation.json',valueField:'id',textField:'text',editable:false"/>
 <span id="span_value"><input class="easyui-textbox" id="value" /></span>
 <a class="easyui-splitbutton" data-options="plain:false,menu:'#mm2',iconCls:'icon-ok'" onclick="addCondition()">增加条件</a>

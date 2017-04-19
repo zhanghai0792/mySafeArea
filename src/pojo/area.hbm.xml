@@ -8,7 +8,7 @@
 		<id name="id">
 			<generator class="native"/>
 		</id>
-		<property name="name" />
+		<property name="name" unique="true"/>
 		<property name="introduction" type="text"/>
 		<!-- <property name="policeStation"/> -->
 		<property name="policeID"/>

@@ -34,6 +34,13 @@ public class applicationFactory {
 		  if(AppConfig.fjName.equals(p.getName()))
 			  fjId=p.getId();
 	  }
+    if(fjId==null){
+    	policeStation record=new policeStation();
+    	record.setName(AppConfig.fjName);
+    	policeStationServiceDao.save(record);
+    	fjId=record.getId();
+    }
+  
   }
 
 

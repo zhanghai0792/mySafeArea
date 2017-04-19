@@ -58,7 +58,7 @@ public class interactionController
 
 	public Object insertBeforDeal(interaction p) throws Exception {
 		p.setReleaseName(currentUser.getCurrentUser().getName());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(interaction p) throws Exception {

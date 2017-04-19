@@ -1,6 +1,9 @@
 package pojo;
 
+import java.util.Map;
+
 import factory.applicationFactory;
+import util.StringUtil;
 
 public class user implements pojoModel {
 	public static final int photoType = 2;
@@ -126,6 +129,32 @@ public class user implements pojoModel {
 		this.header = user.header;}
 	}
 
-	
+	public static String[] excelFormate=new String[]{"phone","name","password","type","areaID","header","policeID","八里湖分局辖区用户信息导入表"};
+	public static user dataChange(Map<String,String> data){
+		user c=null;
+		 if(data!=null)
+			 c=new user();
+		 c.setName(data.get("name"));
+		  c.setPhone(data.get("phone"));
+		  c.setPassword(data.get("password"));
+		  c.setHeader(data.get("header"));
+			if(StringUtil.isNotEmpty(data.get("policeID")))
+			{
+				c.setPoliceID(Integer.parseInt(data.get("policeID")));
+			}
+			if(StringUtil.isNotEmpty(data.get("type")))
+			{
+				c.setType(Integer.parseInt(data.get("type")));
+			}
+			if(StringUtil.isNotEmpty(data.get("areaID")))
+			{
+				c.setAreaID(Integer.parseInt(data.get("areaID")));
+			}
+			//c.setAreaName(data.get("areaName"));
+			c.setIsDelete(false);
+			
+		 
+		return c;
+	}
 
 }

@@ -1,11 +1,15 @@
 package pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import controller.userLogin.currentUser;
 import factory.applicationFactory;
+import util.StringUtil;
 
 public class area implements pojoModel{
 public static final int photoType=1;
@@ -94,6 +98,23 @@ public void setPoliceName(String policeName) {
 	this.policeName = policeName;
 }
 
+public static String[] excelFormate=new String[]{"name","introduction","policeID","八里湖分局辖区小区信息导入表"};
+public static area dataChange(Map<String,String> data){
+	area c=null;
+	 if(data!=null)
+		 c=new area();
+	 c.setName(data.get("name"));
+	  c.setIntroduction(data.get("introduction"));
+	 // System.out.println("小区的policeID"+data.get("policeID"));
+		if(StringUtil.isNotEmpty(data.get("policeID")))
+		{
+			c.setPoliceID(Integer.parseInt(data.get("policeID")));
+		}
+		c.setIsDelete(false);
+		
+	 
+	return c;
+}
 
 
 

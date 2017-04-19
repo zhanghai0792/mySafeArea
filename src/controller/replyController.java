@@ -23,13 +23,13 @@ public class replyController extends controllerTemplate<reply, replyServiceDao, 
 	public Object insertBeforDeal(reply p) throws Exception {
 		p.setReplyerName(currentUser.getCurrentUser().getName());
 		p.setReplyHeader(currentUser.getCurrentUser().getHeader());
-		return null;
+		return super.insertBeforDeal(p);
 	}
 	
 	public Object updateBeforDeal(reply p) throws Exception {
 		p.setReplyerName(currentUser.getCurrentUser().getName());
 		p.setReplyHeader(currentUser.getCurrentUser().getHeader());
-		return null;
+		return super.updateBeforDeal(p);
 	}
 	
 	

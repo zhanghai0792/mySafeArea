@@ -13,6 +13,14 @@ public class carQueryParams extends queryParamsModel<car>{
 	private Integer areaID;
 	private String condition;
 	private String condition_change;
+	private Integer carID;
+	
+	public Integer getCarID() {
+		return carID;
+	}
+	public void setCarID(Integer carID) {
+		this.carID = carID;
+	}
 	public car getObj() {
 		// TODO Auto-generated method stub
 		return car;
@@ -47,7 +55,7 @@ public class carQueryParams extends queryParamsModel<car>{
 	public String getBasicQueryCondition() {
 		if(policeID==null)
 		       policeID=currentUser.getCurrentUser().getPoliceID();	
-		String hql=" where (:areaID IS NULL or car.areaID=:areaID) and (:policeID = :fjid or :policeID=car.policeID) and (:condition_change IS NULL or car.plateNum like :condition_change or car.carNum like :condition_change or car.cardID like :condition_change or car.owner like :condition_change or car.pinYin like :condition_change)";
+		String hql=" where (:carID IS NULL or car.id=:carID) and(:areaID IS NULL or car.areaID=:areaID) and (:policeID = :fjid or :policeID=car.policeID) and (:condition_change IS NULL or car.plateNum like :condition_change or car.carNum like :condition_change or car.cardID like :condition_change or car.owner like :condition_change or car.pinYin like :condition_change)";
 		return hql;
 	}
 	

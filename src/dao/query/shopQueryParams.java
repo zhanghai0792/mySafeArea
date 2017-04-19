@@ -9,7 +9,14 @@ public class shopQueryParams extends queryParamsModel<shop>{
    private Integer areaID;
    private String condition;
    private String condition_change;
+	private Integer shopID;
 	
+	public Integer getShopID() {
+		return shopID;
+	}
+	public void setShopID(Integer shopID) {
+		this.shopID = shopID;
+	}
 	public shop getObj() {
 		// TODO Auto-generated method stub
 		return shop;
@@ -44,7 +51,7 @@ public class shopQueryParams extends queryParamsModel<shop>{
 	public String getBasicQueryCondition() {
 		if(policeID==null)
 			 policeID=currentUser.getCurrentUser().getPoliceID();
-		return " where (:areaID IS NULL or shop.areaID=:areaID) and (:policeID = :fjid or :policeID=shop.policeID) and (:condition_change IS NULL or shop.name like :condition_change or shop.address like :condition_change or shop.owner like :condition_change or shop.businessScope like :condition_change or shop.pinYin like :condition_change)";
+		return " where (:shopID IS NULL or shop.id=:shopID) and (:areaID IS NULL or shop.areaID=:areaID) and (:policeID = :fjid or :policeID=shop.policeID) and (:condition_change IS NULL or shop.name like :condition_change or shop.address like :condition_change or shop.owner like :condition_change or shop.businessScope like :condition_change or shop.pinYin like :condition_change)";
 	}
 	
 	public String getDetailQueryHQL() {

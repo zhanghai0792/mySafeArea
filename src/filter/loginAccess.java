@@ -50,7 +50,7 @@ public class loginAccess implements Filter {
 		response.setCharacterEncoding("utf-8");
 		
 		
-		if(StringUtil.isNotEmpty(request.getParameter("method"))&&StringUtil.isNotEmpty(request.getParameter("params"))){	
+		if((StringUtil.isNotEmpty(request.getParameter("method"))&&StringUtil.isNotEmpty(request.getParameter("params")))||StringUtil.isNotEmpty(request.getParameter("message"))){	
 			//如果是android的平台放行
 			chain.doFilter(request, response);
 		}else{
@@ -101,7 +101,7 @@ public class loginAccess implements Filter {
 					
 				}else{
 					//没有登录,进入登录页面
-					request.getRequestDispatcher("/index.htm").forward(request,response);
+					request.getRequestDispatcher("/Jsps/login.jsp").forward(request,response);
 				}
 			}
 			
