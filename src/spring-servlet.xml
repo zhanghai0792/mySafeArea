@@ -21,11 +21,19 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 				<property name="objectMapper">
 					<ref bean="myObjectMapper" />
 				</property>
-				<property name="supportedMediaTypes">
+				<!-- <property name="supportedMediaTypes">
 					<list>
 						<value>application/json;charset=UTF-8</value>
 					</list>
-				</property>
+				</property> -->
+		<property name="supportedMediaTypes">
+		<list>
+        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+	<value>text/html;charset=UTF-8</value>
+	<value>text/json;charset=UTF-8</value>
+	<value>application/json;charset=UTF-8</value>
+		</list>
+	</property>
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>

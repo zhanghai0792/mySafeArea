@@ -33,6 +33,7 @@ import json.MyObjectMapper;
 import servicesDao.serviceDaoTemplate;
 import util.AppConfig;
 import util.FileUtil;
+import util.JsonUtil;
 import util.ListUtil;
 import util.StringUtil;
 
@@ -64,8 +65,24 @@ public abstract class controllerTemplate<T extends pojoModel, serviceDao extends
 		 if(file==null||file.getInputStream()==null)
 			 throw new Exception("没有上传的excel文件");
 		List datas=excelImport.readExcelToData(file, pojoClass);
-		int count=serviceDao.insertBatch(datas);
-		return new jsonResult("成功导入【"+count+"】条记录");
+		int count=0;
+		List<Integer> nos=new ArrayList<Integer>(0);
+		if(ListUtil.isNotEmpty(datas)){
+			
+			
+			for(int i=0;i<datas.size();i++){
+				try{
+				count=count+serviceDao.save((T)datas.get(i));
+				}catch(Exception e){
+					nos.add((i+1));
+				}
+			}
+		}
+		String result="成功导入【"+count+"】条记录"; 
+		 if(nos.size()>0){
+			 result=result+"<br>导入失败【"+nos.size()+"】条<br>excel中第"+JsonUtil.getJsonString(nos)+"条记录有问题没有导入";
+			 }
+		return new jsonResult(result);
 	}
 	
 	

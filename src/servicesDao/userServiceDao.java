@@ -43,15 +43,17 @@ public class userServiceDao extends serviceDaoTemplate<user, userMapper, userQue
 		
 	}
 	
-	
+	public void updatesUserArea(List<user> pojos)throws Exception{
+		dao.updates(pojos);
+	}
 	
 
-	public int insertBatch(List<user> pojos) throws Exception {
+	/*public int insertBatch(List<user> pojos) throws Exception {
 		
 		int x= super.insertBatch(pojos);
 		dao.updates(pojos);
 		return x;
-	}
+	}*/
 	public int updateNoNull(user record) throws Exception {
 		// TODO Auto-generated method stub
 		int count = super.updateNoNull(record);

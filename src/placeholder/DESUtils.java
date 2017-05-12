@@ -63,7 +63,7 @@ public class DESUtils {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String arg[]=new String[]{"Bv6YMexamG1xyMcos8sHjhWE6MwyBGbWMfeotjFu","oDMUveZbL1lEOeZZ5lWbPgfL9FFPFLWptj-cQVxU","safeareaimage"};
+		String arg[]=new String[]{"Bv6YMexamG1xyMcos8sHjhWE6MwyBGbWMfeotjFu","oDMUveZbL1lEOeZZ5lWbPgfL9FFPFLWptj-cQVxU","safeareaimage","123456"};
 		
 			for (String a : arg) {
 				System.out.println(a + ":" + getEncryptString(a));

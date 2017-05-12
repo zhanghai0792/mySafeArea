@@ -31,7 +31,7 @@ public class newsQueryParams extends queryParamsModel<news>{
 	public String getBasicQueryCondition() {
 		if(policeID==null)
 		       policeID=currentUser.getCurrentUser().getPoliceID();
-		return " where (:newsId IS NULL or news.id=:newsId) and (:policeID = :fjid or :policeID=news.policeID)";
+		return " where (:newsId IS NULL or news.id=:newsId) and (:policeID=news.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {

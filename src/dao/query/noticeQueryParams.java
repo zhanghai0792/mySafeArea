@@ -28,7 +28,7 @@ public class noticeQueryParams extends queryParamsModel<notice>{
 		   }
 		if(policeID==null)
 		       policeID=currentUser.getCurrentUser().getPoliceID();
-		return " where (:policeID = :fjid or :policeID=notice.policeID)";
+		return " where (:policeID=notice.policeID)";
 	}
 	
 	public String getDetailQueryHQL() {

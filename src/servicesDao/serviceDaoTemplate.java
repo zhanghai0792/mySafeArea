@@ -83,9 +83,9 @@ public abstract class serviceDaoTemplate<T extends pojoModel,Dao extends daoTemp
     	return dao.getDetail(query);
     }
     
-    public  int insertBatch(List<T> pojos)throws Exception{
+  /*  public  int insertBatch(List<T> pojos)throws Exception{
     	return dao.insertBatch(pojos);
-    }
+    }*/
     
     
   /*  public List<T> getDetail (Query query)throws Exception{

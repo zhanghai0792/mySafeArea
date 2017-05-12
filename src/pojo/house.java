@@ -192,13 +192,13 @@ id`,
 		 if(data!=null)
 			 c=new house();
 		 if(StringUtil.isNotEmpty(data.get("type"))){
-		  if("自住".equals(data.get("type")))
-			  c.setType(0);
-		 }else if("出租".equals(data.get("type"))){
-			 c.setType(1);
-		 }else if("闲置".equals(data.get("type"))){
-			 c.setType(2);
-		 }
+			  if("自住".equals(data.get("type")))
+				  c.setType(0);
+			 }else if("租赁".equals(data.get("type"))){
+				 c.setType(1);
+			 }else if("闲置".equals(data.get("type"))){
+				 c.setType(2);
+			 }
 		 c.setAddress(data.get("address"));
 		 
 		 c.setOwner(data.get("owner"));
